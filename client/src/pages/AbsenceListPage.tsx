@@ -16,16 +16,18 @@ export function AbsenceListPage() {
     const AbsenceListActions = useActions(AbsenceListActionList);
     const MembersListActions = useActions(MembersListActionList);
 
-    axios.get(`http://localhost:3001/absences`)
-        .then(absenceRes => {
-            AbsenceListActions.createAbsenceListing(absenceRes.data.payload);
-        })
-        .then(() => {
-            axios.get(`http://localhost:3001/members`)
-                .then(membersRes => {
-                    MembersListActions.createMembersListing(membersRes.data.payload);
-                })
-        })
+    React.useEffect(() => {
+        axios.get(`http://localhost:3001/absences`)
+            .then(absenceRes => {
+                AbsenceListActions.createAbsenceListing(absenceRes.data.payload);
+            })
+            .then(() => {
+                axios.get(`http://localhost:3001/members`)
+                    .then(membersRes => {
+                        MembersListActions.createMembersListing(membersRes.data.payload);
+                    })
+            })
+    }, []);
 
     const [vacationType, setVacationType] = React.useState('all');
     const [startDate, setStartDate] = React.useState('');
@@ -52,41 +54,6 @@ export function AbsenceListPage() {
                 <Typography variant="h4" gutterBottom>
                     Absence List
 				</Typography>
-            </Grid>
-            <Grid item xs={8}>
-                <Typography variant="h5" gutterBottom>
-                    Filter List
-				</Typography>
-                <Select className={classes.select}
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={vacationType}
-                    onChange={handleChange}>
-                    <MenuItem value={vacationType}>All</MenuItem>
-                    <MenuItem value='vacation'>Vacation</MenuItem>
-                    <MenuItem value='sickness'>Sickness</MenuItem>
-                    <MenuItem value='other'>Other</MenuItem>
-                </Select>
-                <TextField
-                    id="date"
-                    onChange={handleDateToChange}
-                    value={startDate}
-                    label="From:"
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    id="date"
-                    onChange={handleDateFromChange}
-                    value={endDate}
-                    label="To:"
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
             </Grid>
             <Grid item xs={12}>
                 <AbsenceTableTable />

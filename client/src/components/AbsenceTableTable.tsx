@@ -5,9 +5,15 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
-import { Absences } from "../model/index";
+import { Absences, Filter } from "../model/index";
 import { RootState } from "../reducers/index";
 import Pagination from '@material-ui/lab/Pagination';
+
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import { Grid, Typography } from "@material-ui/core";
+
 
 export function AbsenceTableTable() {
     const classes = useStyles();
@@ -43,8 +49,71 @@ export function AbsenceTableTable() {
         return 'Requested'
     };
 
+    const filterAbsenceListing = (event: Filter) => {
+        console.log(event);
+        console.log(absenceList.filter(obj => obj['type'] === event['type']));
+    };
+
+    const [vacationType, setVacationType] = React.useState('all');
+    const [startDate, setStartDate] = React.useState('');
+    const [endDate, setEndDate] = React.useState('');
+
+    const handleSelectChange = (event: any) => {
+        setVacationType(event.target.value);
+        setVacationType((state) => {
+            console.log(state);
+            filterAbsenceListing({ endDate: endDate, startDate: startDate, type: state });
+            return state;
+        });
+    };
+
+    const handleDateToChange = (event: any) => {
+        setStartDate(event.target.value);
+        // filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
+    };
+
+    const handleDateFromChange = (event: any) => {
+        setEndDate(event.target.value);
+        // filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
+    };
+
     return (
         <Paper className={classes.paper}>
+            <Grid item xs={8}>
+                <Typography variant="h5" gutterBottom>
+                    Filter List
+				</Typography>
+                <Select className={classes.select}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={vacationType}
+                    onChange={handleSelectChange}>
+                    <MenuItem value={vacationType}>All</MenuItem>
+                    <MenuItem value='vacation'>Vacation</MenuItem>
+                    <MenuItem value='sickness'>Sickness</MenuItem>
+                    <MenuItem value='other'>Other</MenuItem>
+                </Select>
+                <TextField
+                    id="date"
+                    onChange={handleDateToChange}
+                    value={startDate}
+                    label="From:"
+                    type="date"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="date"
+                    onChange={handleDateFromChange}
+                    value={endDate}
+                    label="To:"
+                    type="date"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+            </Grid>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -93,6 +162,11 @@ const useStyles = makeStyles({
         width: "100%",
         minWidth: 260,
         display: "inline-block",
+    },
+    select: {
+        height: '48px',
+        marginRight: '2px',
+        width: '150px',
     },
     table: {
         width: "100%",
