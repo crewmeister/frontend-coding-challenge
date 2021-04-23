@@ -1,4 +1,4 @@
-export interface Todo {
+export interface Absences {
     id: string;
     crewId?: string;
     name?: string;
@@ -39,12 +39,12 @@ interface TodoActionType<T, P> {
     payload: P;
 }
 export type MembersAction =
-    | TodoActionType<typeof MembersListActions.SET_MEMBERS, Todo[]>
-    | TodoActionType<typeof MembersListActions.ADD_MEMBERS, Todo>;
+    | TodoActionType<typeof MembersListActions.SET_MEMBERS, Members[]>
+    | TodoActionType<typeof MembersListActions.ADD_MEMBERS, Members>;
 
 export type TodoAction =
-    | TodoActionType<typeof AbsenceListActions.SET_ABSENCE, Todo[]>
-    | TodoActionType<typeof AbsenceListActions.ADD_ABSENCE, Todo>
+    | TodoActionType<typeof AbsenceListActions.SET_ABSENCE, Absences[]>
+    | TodoActionType<typeof AbsenceListActions.ADD_ABSENCE, Absences>
     | TodoActionType<typeof AbsenceListActions.COMPLETE_ABSENCE, number>
     | TodoActionType<typeof AbsenceListActions.UNCOMPLETE_ABSENCE, number>
     | TodoActionType<typeof AbsenceListActions.DELETE_ABSENCE, number>;

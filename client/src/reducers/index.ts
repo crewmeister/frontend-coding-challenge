@@ -1,12 +1,12 @@
 // imports
 import { History } from "history";
 import { combineReducers } from "redux";
-import { Todo } from "../model/index";
+import { Absences } from "../model/index";
 import * as absenceReducer from "./absences";
 import * as membersReducer from "./members";
 export interface RootState {
     drawerOpen: boolean;
-    todoList: Todo[];
+    todoList: Absences[];
 }
 
 export default (history: History) =>

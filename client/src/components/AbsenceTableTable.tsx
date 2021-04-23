@@ -6,7 +6,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
-import { Todo } from "../model/index";
+import { Absences } from "../model/index";
 import { RootState } from "../reducers/index";
 
 export function AbsenceTableTable() {
@@ -25,7 +25,7 @@ export function AbsenceTableTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {todoList.map((n: Todo) => {
+                    {todoList.map((n: Absences) => {
                         return (
                             <TableRow
                                 key={n.id}

@@ -1,17 +1,17 @@
 import { ConfigActions } from '../model/config';
-import { Todo, TodoAction, AbsenceListActions } from '../model/index';
+import { Members, TodoAction, AbsenceListActions } from '../model/index';
 import createReducer from './createReducer';
 
-export const todoList = createReducer<Todo[]>([], {
-    [AbsenceListActions.SET_ABSENCE](state: Todo[], action: TodoAction) {
+export const todoList = createReducer<Members[]>([], {
+    [AbsenceListActions.SET_ABSENCE](state: Members[], action: TodoAction) {
         console.log('createReducercreateReducercreateReducer:', action.payload);
-        state = <Todo[]>action.payload;
+        state = <Members[]>action.payload;
         return state;
     },
-    [AbsenceListActions.ADD_ABSENCE](state: Todo[], action: TodoAction) {
+    [AbsenceListActions.ADD_ABSENCE](state: Members[], action: TodoAction) {
         return [...state, action.payload];
     },
-    [ConfigActions.PURGE_STATE](state: Todo[], action: TodoAction) {
+    [ConfigActions.PURGE_STATE](state: Members[], action: TodoAction) {
         return [];
     },
 });
