@@ -1,7 +1,7 @@
-import { AbsenceAction, MembersAction } from './absence';
+import { AbsenceAction, MembersAction } from './exportTypeUtil';
 import { ConfigAction } from './config';
 
 export * from './config';
-export * from './absence';
+export * from './exportTypeUtil';
 
 export type Action = ConfigAction | AbsenceAction | MembersAction;
