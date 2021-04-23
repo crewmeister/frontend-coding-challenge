@@ -14,15 +14,13 @@ export function AbsenceListPage() {
     const MembersListActions = useActions(MembersListActionList);
 
     axios.get(`http://localhost:3001/members`)
-        .then(res => {
-            console.log('members res:', res);
-            AbsenceListActions.createAbsenceListing(res.data.payload);
+        .then(absenceRes => {
+            AbsenceListActions.createAbsenceListing(absenceRes.data.payload);
         })
         .then(() => {
             axios.get(`http://localhost:3001/absences`)
-                .then(res => {
-                    console.log('absences res:', res);
-                    MembersListActions.createMembersListing(res.data.payload);
+                .then(membersRes => {
+                    MembersListActions.createMembersListing(membersRes.data.payload);
                 })
         })
 
