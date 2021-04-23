@@ -13,12 +13,12 @@ export function AbsenceListPage() {
     const AbsenceListActions = useActions(AbsenceListActionList);
     const MembersListActions = useActions(MembersListActionList);
 
-    axios.get(`http://localhost:3001/members`)
+    axios.get(`http://localhost:3001/absences`)
         .then(absenceRes => {
             AbsenceListActions.createAbsenceListing(absenceRes.data.payload);
         })
         .then(() => {
-            axios.get(`http://localhost:3001/absences`)
+            axios.get(`http://localhost:3001/members`)
                 .then(membersRes => {
                     MembersListActions.createMembersListing(membersRes.data.payload);
                 })

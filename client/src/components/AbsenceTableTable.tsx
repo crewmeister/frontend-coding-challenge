@@ -20,14 +20,30 @@ export function AbsenceTableTable() {
         console.log('absenceList', absenceList);
     }, 4000);
 
+
+    const getName = (userId: string): string => {
+        return membersList.find(member => member.userId === userId)?.name || '';
+    };
+
+    const getPeriod = (startDate: string, endDate: string): string => {
+        return startDate + ' - ' + endDate;
+    };
+
+    const getStatus = (rejectedAt: string, confirmedAt: string): string => {
+        return rejectedAt;
+    };
+
     return (
         <Paper className={classes.paper}>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell padding="default">Completed</TableCell>
-                        <TableCell padding="default">Text</TableCell>
-                        <TableCell padding="default">Delete</TableCell>
+                        <TableCell padding="default">Member</TableCell>
+                        <TableCell padding="default">Type of absence</TableCell>
+                        <TableCell padding="default">Period</TableCell>
+                        <TableCell padding="default">Member note</TableCell>
+                        <TableCell padding="default">Status  (Requested/Confirmed/Rejected)</TableCell>
+                        <TableCell padding="default">Admitter note</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -36,19 +52,12 @@ export function AbsenceTableTable() {
                             <TableRow
                                 key={n.id}
                                 hover>
-                                <TableCell>{n.crewId}</TableCell>
-                                <TableCell>{n.name}</TableCell>
-                                <TableCell>
-                                    <IconButton
-                                        aria-label="Delete"
-                                        color="default"
-                                        onClick={() =>
-                                            AbsenceListActions.deleteTodo(n.id)
-                                        }
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </TableCell>
+                                <TableCell>{getName(n.userId)}</TableCell>
+                                <TableCell>{n.type}</TableCell>
+                                <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
+                                <TableCell>{n.memberNote || 'No not availble'}</TableCell>
+                                <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
+                                <TableCell>{n.admitterNote}</TableCell>
                             </TableRow>
                         );
                     })}

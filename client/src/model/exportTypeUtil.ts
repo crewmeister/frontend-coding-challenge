@@ -6,7 +6,7 @@ export interface Absences {
     id: string;
     crewId?: string;
     name?: string;
-    userId?: string;
+    userId: string;
     admitterId: string;
     admitterNote: string;
     confirmedAt: string;
