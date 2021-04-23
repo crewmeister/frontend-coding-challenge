@@ -21,9 +21,38 @@ export function AbsenceTableTable() {
     const membersList = useSelector((state: RootState) => state.membersList);
     const AbsenceListActions = useActions(AbsenceListActionList);
 
+    const [vacationType, setVacationType] = React.useState('all');
+    const [startDate, setStartDate] = React.useState('');
+    const [endDate, setEndDate] = React.useState('');
+
+    const updatePages = () => {
+        setNoOfPages(Math.ceil(getAbsenceList().length / itemsPerPage));
+    };
+
+    const handleSelectChange = (event: any) => {
+        setVacationType(event.target.value);
+        updatePages();
+    };
+
+    const handleDateToChange = (event: any) => {
+        setStartDate(event.target.value);
+    };
+
+    const handleDateFromChange = (event: any) => {
+        setEndDate(event.target.value);
+    };
+
+    const filterAbsenceListing = () => {
+        return absenceList.filter(obj => obj['type'] === vacationType || vacationType === 'all');
+    };
+
+    const getAbsenceList = (): Absences[] => {
+        return filterAbsenceListing();
+    };
+
     const itemsPerPage = 10;
     const [page, setPage] = React.useState(1);
-    const [noOfPages] = React.useState(
+    const [noOfPages, setNoOfPages] = React.useState(
         Math.ceil(absenceList.length / itemsPerPage)
     );
 
@@ -47,30 +76,6 @@ export function AbsenceTableTable() {
             return 'Rejected'
         }
         return 'Requested'
-    };
-
-    const filterAbsenceListing = () => {
-        return absenceList.filter(obj => obj['type'] === vacationType || vacationType === 'all');
-    };
-
-    const [vacationType, setVacationType] = React.useState('all');
-    const [startDate, setStartDate] = React.useState('');
-    const [endDate, setEndDate] = React.useState('');
-
-    const handleSelectChange = (event: any) => {
-        setVacationType(event.target.value);
-    };
-
-    const handleDateToChange = (event: any) => {
-        setStartDate(event.target.value);
-    };
-
-    const handleDateFromChange = (event: any) => {
-        setEndDate(event.target.value);
-    };
-
-    const getAbsenceList = (value: any): Absences[] => {
-        return filterAbsenceListing();
     };
 
     return (
@@ -122,7 +127,7 @@ export function AbsenceTableTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {getAbsenceList(absenceList).slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
+                    {getAbsenceList().slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
                         return (
                             <TableRow
                                 key={n.id}
@@ -138,6 +143,7 @@ export function AbsenceTableTable() {
                     })}
                 </TableBody>
             </Table>
+            noOfPages:{noOfPages}
             <Pagination
                 count={noOfPages}
                 page={page}
