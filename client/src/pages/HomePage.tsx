@@ -8,7 +8,7 @@ export function HomePage() {
     return (
         <div className={classes.root}>
             <Typography variant="h4" gutterBottom>
-                Please proceed to Absence List screen to view the staff that is absent and thier details
+                Please proceed to Absence List screen to view the staff that is absent and their details
             </Typography>
         </div>
     );
