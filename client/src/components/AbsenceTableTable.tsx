@@ -49,9 +49,8 @@ export function AbsenceTableTable() {
         return 'Requested'
     };
 
-    const filterAbsenceListing = (event: Filter) => {
-        console.log(event);
-        console.log(absenceList.filter(obj => obj['type'] === event['type']));
+    const filterAbsenceListing = () => {
+        return absenceList.filter(obj => obj['type'] === vacationType || vacationType === 'all');
     };
 
     const [vacationType, setVacationType] = React.useState('all');
@@ -60,21 +59,18 @@ export function AbsenceTableTable() {
 
     const handleSelectChange = (event: any) => {
         setVacationType(event.target.value);
-        setVacationType((state) => {
-            console.log(state);
-            filterAbsenceListing({ endDate: endDate, startDate: startDate, type: state });
-            return state;
-        });
     };
 
     const handleDateToChange = (event: any) => {
         setStartDate(event.target.value);
-        // filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
     };
 
     const handleDateFromChange = (event: any) => {
         setEndDate(event.target.value);
-        // filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
+    };
+
+    const getAbsenceList = (value: any): Absences[] => {
+        return filterAbsenceListing();
     };
 
     return (
@@ -88,7 +84,7 @@ export function AbsenceTableTable() {
                     id="demo-simple-select"
                     value={vacationType}
                     onChange={handleSelectChange}>
-                    <MenuItem value={vacationType}>All</MenuItem>
+                    <MenuItem value='all'>All</MenuItem>
                     <MenuItem value='vacation'>Vacation</MenuItem>
                     <MenuItem value='sickness'>Sickness</MenuItem>
                     <MenuItem value='other'>Other</MenuItem>
@@ -126,7 +122,7 @@ export function AbsenceTableTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {absenceList.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
+                    {getAbsenceList(absenceList).slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
                         return (
                             <TableRow
                                 key={n.id}
