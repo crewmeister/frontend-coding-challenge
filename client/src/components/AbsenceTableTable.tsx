@@ -11,8 +11,14 @@ import { RootState } from "../reducers/index";
 
 export function AbsenceTableTable() {
     const classes = useStyles();
-    const todoList = useSelector((state: RootState) => state.todoList);
+    const absenceList = useSelector((state: RootState) => state.absenceList);
+    const membersList = useSelector((state: RootState) => state.membersList);
     const AbsenceListActions = useActions(AbsenceListActionList);
+
+    setTimeout(() => {
+        console.log('membersList', membersList);
+        console.log('absenceList', absenceList);
+    }, 4000);
 
     return (
         <Paper className={classes.paper}>
@@ -25,7 +31,7 @@ export function AbsenceTableTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {todoList.map((n: Absences) => {
+                    {absenceList.map((n: Absences) => {
                         return (
                             <TableRow
                                 key={n.id}

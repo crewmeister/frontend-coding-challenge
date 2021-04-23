@@ -5,16 +5,25 @@ import * as React from "react";
 import { AbsenceTableTable } from "../components";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
+import * as MembersListActionList from "../actions/membersList";
 import axios from 'axios';
 
 export function AbsenceListPage() {
     const classes = useStyles();
     const AbsenceListActions = useActions(AbsenceListActionList);
+    const MembersListActions = useActions(MembersListActionList);
 
     axios.get(`http://localhost:3001/members`)
         .then(res => {
             console.log('members res:', res);
             AbsenceListActions.createAbsenceListing(res.data.payload);
+        })
+        .then(() => {
+            axios.get(`http://localhost:3001/absences`)
+                .then(res => {
+                    console.log('absences res:', res);
+                    MembersListActions.createMembersListing(res.data.payload);
+                })
         })
 
     return (

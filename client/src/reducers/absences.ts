@@ -2,9 +2,8 @@ import { ConfigActions } from '../model/config';
 import { Absences, AbsenceAction, AbsenceListActions } from '../model/index';
 import createReducer from './createReducer';
 
-export const todoList = createReducer<Absences[]>([], {
+export const absenceList = createReducer<Absences[]>([], {
     [AbsenceListActions.SET_ABSENCE](state: Absences[], action: AbsenceAction) {
-        console.log('createReducercreateReducercreateReducer:', action.payload);
         state = <Absences[]>action.payload;
         return state;
     },

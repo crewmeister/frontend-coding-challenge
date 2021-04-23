@@ -6,7 +6,8 @@ import * as absenceReducer from "./absences";
 import * as membersReducer from "./members";
 export interface RootState {
     drawerOpen: boolean;
-    todoList: Absences[];
+    absenceList: Absences[];
+    membersList: Absences[];
 }
 
 export default (history: History) =>

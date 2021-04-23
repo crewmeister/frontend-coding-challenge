@@ -1,14 +1,13 @@
 import { ConfigActions } from '../model/config';
-import { Members, MembersAction, AbsenceListActions } from '../model/index';
+import { Members, MembersAction, MembersListActions } from '../model/index';
 import createReducer from './createReducer';
 
-export const todoList = createReducer<Members[]>([], {
-    [AbsenceListActions.SET_ABSENCE](state: Members[], action: MembersAction) {
-        console.log('createReducercreateReducercreateReducer:', action.payload);
+export const membersList = createReducer<Members[]>([], {
+    [MembersListActions.SET_MEMBERS](state: Members[], action: MembersAction) {
         state = <Members[]>action.payload;
         return state;
     },
-    [AbsenceListActions.ADD_ABSENCE](state: Members[], action: MembersAction) {
+    [MembersListActions.ADD_MEMBERS](state: Members[], action: MembersAction) {
         return [...state, action.payload];
     },
     [ConfigActions.PURGE_STATE](state: Members[], action: MembersAction) {
