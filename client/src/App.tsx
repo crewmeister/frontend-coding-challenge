@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: "100%",
         height: "calc(100% - 56px)",
         marginTop: 56,
+        overflowY: 'auto',
         [theme.breakpoints.up("sm")]: {
             height: "calc(100% - 64px)",
             marginTop: 64,
