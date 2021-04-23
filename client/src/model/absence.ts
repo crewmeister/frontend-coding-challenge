@@ -42,7 +42,7 @@ export type MembersAction =
     | TodoActionType<typeof MembersListActions.SET_MEMBERS, Members[]>
     | TodoActionType<typeof MembersListActions.ADD_MEMBERS, Members>;
 
-export type TodoAction =
+export type AbsenceAction =
     | TodoActionType<typeof AbsenceListActions.SET_ABSENCE, Absences[]>
     | TodoActionType<typeof AbsenceListActions.ADD_ABSENCE, Absences>
     | TodoActionType<typeof AbsenceListActions.COMPLETE_ABSENCE, number>

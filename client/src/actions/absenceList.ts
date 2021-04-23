@@ -1,7 +1,7 @@
-import { Absences, TodoAction, AbsenceListActions } from '../model/index';
+import { Absences, AbsenceAction, AbsenceListActions } from '../model/index';
 import { RootState } from '../reducers/index';
 
-export function createAbsenceListing(absences: Absences[]): TodoAction {
+export function createAbsenceListing(absences: Absences[]): AbsenceAction {
     return {
         type: AbsenceListActions.SET_ABSENCE,
         payload: absences,
