@@ -15,12 +15,6 @@ export function AbsenceTableTable() {
     const membersList = useSelector((state: RootState) => state.membersList);
     const AbsenceListActions = useActions(AbsenceListActionList);
 
-    setTimeout(() => {
-        console.log('membersList', membersList);
-        console.log('absenceList', absenceList);
-    }, 4000);
-
-
     const getName = (userId: string): string => {
         return membersList.find(member => member.userId === userId)?.name || '';
     };
@@ -30,7 +24,13 @@ export function AbsenceTableTable() {
     };
 
     const getStatus = (rejectedAt: string, confirmedAt: string): string => {
-        return rejectedAt;
+        if (!!confirmedAt) {
+            return 'Confirmed'
+        }
+        if (!!rejectedAt) {
+            return 'Rejected'
+        }
+        return 'Requested'
     };
 
     return (
@@ -55,9 +55,9 @@ export function AbsenceTableTable() {
                                 <TableCell>{getName(n.userId)}</TableCell>
                                 <TableCell>{n.type}</TableCell>
                                 <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
-                                <TableCell>{n.memberNote || 'No not availble'}</TableCell>
+                                <TableCell>{n.memberNote || 'No note availble'}</TableCell>
                                 <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
-                                <TableCell>{n.admitterNote}</TableCell>
+                                <TableCell>{n.admitterNote || 'No note availble'}</TableCell>
                             </TableRow>
                         );
                     })}
