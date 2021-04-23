@@ -1,10 +1,17 @@
-import { Absences, AbsenceAction, AbsenceListActions } from '../model/index';
+import { Absences, AbsenceAction, AbsenceListActions, Filter } from '../model/index';
 import { RootState } from '../reducers/index';
 
 export function createAbsenceListing(absences: Absences[]): AbsenceAction {
     return {
         type: AbsenceListActions.SET_ABSENCE,
         payload: absences,
+    };
+}
+
+export function filterAbsenceListing(absencesFilterObject: Filter): AbsenceAction {
+    return {
+        type: AbsenceListActions.FILTER_ABSENCE,
+        payload: absencesFilterObject,
     };
 }
 

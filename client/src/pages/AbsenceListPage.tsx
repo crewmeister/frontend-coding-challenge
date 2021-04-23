@@ -28,16 +28,22 @@ export function AbsenceListPage() {
         })
 
     const [vacationType, setVacationType] = React.useState('all');
+    const [startDate, setStartDate] = React.useState('');
+    const [endDate, setEndDate] = React.useState('');
 
     const handleChange = (event: any) => {
-        console.log(event.target.value);
         setVacationType(event.target.value);
+        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
     };
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const handleDateToChange = (event: any) => {
+        setStartDate(event.target.value);
+        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
+    };
 
-    const handleDateChange = (date: any) => {
-        setSelectedDate(date);
+    const handleDateFromChange = (event: any) => {
+        setEndDate(event.target.value);
+        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
     };
 
     return (
@@ -63,18 +69,20 @@ export function AbsenceListPage() {
                 </Select>
                 <TextField
                     id="date"
+                    onChange={handleDateToChange}
+                    value={startDate}
                     label="From:"
                     type="date"
-                    defaultValue="2017-05-24"
                     InputLabelProps={{
                         shrink: true,
                     }}
                 />
                 <TextField
                     id="date"
+                    onChange={handleDateFromChange}
+                    value={endDate}
                     label="To:"
                     type="date"
-                    defaultValue="2017-05-24"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -99,7 +107,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     select: {
         height: '48px',
-        marginRight: '20px',
+        marginRight: '2px',
+        width: '150px',
     },
 
     buttonContainer: {

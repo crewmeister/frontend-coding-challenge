@@ -21,6 +21,7 @@ export interface Absences {
 export enum AbsenceListActions {
     ADD_ABSENCE = "ADD_ABSENCE",
     SET_ABSENCE = "SET_ABSENCE",
+    FILTER_ABSENCE = "FILTER_ABSENCE",
     DELETE_ABSENCE = "DELETE_ABSENCE",
     COMPLETE_ABSENCE = "COMPLETE_ABSENCE",
     UNCOMPLETE_ABSENCE = "UNCOMPLETE_ABSENCE",
@@ -31,6 +32,12 @@ export interface Members {
     image?: string;
     name?: string;
     userId?: string;
+}
+
+export interface Filter {
+    endDate: string;
+    startDate: string;
+    type: string;
 }
 
 export enum MembersListActions {
@@ -44,4 +51,5 @@ export type MembersAction =
 
 export type AbsenceAction =
     | TodoActionType<typeof AbsenceListActions.SET_ABSENCE, Absences[]>
-    | TodoActionType<typeof AbsenceListActions.ADD_ABSENCE, Absences>;
+    | TodoActionType<typeof AbsenceListActions.ADD_ABSENCE, Absences>
+    | TodoActionType<typeof AbsenceListActions.FILTER_ABSENCE, Filter>;
