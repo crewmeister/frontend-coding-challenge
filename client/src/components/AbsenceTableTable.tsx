@@ -5,7 +5,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
-import { Absences, Filter } from "../model/index";
+import { Absences } from "../model/index";
 import { RootState } from "../reducers/index";
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -127,9 +127,9 @@ export function AbsenceTableTable() {
                                 <TableCell>{getName(n.userId)}</TableCell>
                                 <TableCell>{n.type}</TableCell>
                                 <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
-                                <TableCell>{n.memberNote || 'No note availble'}</TableCell>
+                                <TableCell>{n.memberNote || 'No note available'}</TableCell>
                                 <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
-                                <TableCell>{n.admitterNote || 'No note availble'}</TableCell>
+                                <TableCell>{n.admitterNote || 'No note available'}</TableCell>
                             </TableRow>
                         );
                     })}
