@@ -44,6 +44,7 @@ export function AbsenceTable() {
     };
 
     const filterAbsenceListing = () => {
+        if (!absenceList || !membersList) return [];
         return absenceList.filter(obj => {
             return (obj['type'] === vacationType || vacationType === 'all') &&
                 (!startDate || new Date(startDate) < new Date(obj['startDate'])) &&
@@ -79,86 +80,95 @@ export function AbsenceTable() {
 
     return (
         <Paper className={classes.paper}>
-            <Grid item xs={8}>
-                <Typography variant="h5">
-                    Total {getAbsenceList().length}
-                </Typography>
-                <Select className={classes.select}
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={vacationType}
-                    onChange={handleSelectChange}>
-                    <MenuItem value='all'>All</MenuItem>
-                    <MenuItem value='vacation'>Vacation</MenuItem>
-                    <MenuItem value='sickness'>Sickness</MenuItem>
-                    <MenuItem value='other'>Other</MenuItem>
-                </Select>
-                <TextField
-                    id="date"
-                    onChange={handleDateToChange}
-                    value={startDate}
-                    label="From:"
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    id="date"
-                    onChange={handleDateFromChange}
-                    value={endDate}
-                    label="To:"
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-            </Grid>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell padding="default">Member</TableCell>
-                        <TableCell padding="default">Type of absence</TableCell>
-                        <TableCell padding="default">Period</TableCell>
-                        <TableCell padding="default">Member note</TableCell>
-                        <TableCell padding="default">Status  (Requested/Confirmed/Rejected)</TableCell>
-                        <TableCell padding="default">Admitter note</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        getAbsenceList().length > 0 ? getAbsenceList().slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
-                            return (
-                                <TableRow
-                                    key={n.id}
-                                    hover>
-                                    <TableCell>{getName(n.userId)}</TableCell>
-                                    <TableCell>{n.type}</TableCell>
-                                    <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
-                                    <TableCell>{n.memberNote || 'No note available'}</TableCell>
-                                    <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
-                                    <TableCell>{n.admitterNote || 'No note available'}</TableCell>
-                                </TableRow>
-                            );
-                        })
-                            :
+            {!membersList || !absenceList &&
+                <div>
+                    Error in fetch data
+                </div>
+            }
+            {membersList && absenceList &&
+                <div>
+                    <Grid item xs={8}>
+                        <Typography variant="h5">
+                            Total {getAbsenceList().length}
+                        </Typography>
+                        <Select className={classes.select}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={vacationType}
+                            onChange={handleSelectChange}>
+                            <MenuItem value='all'>All</MenuItem>
+                            <MenuItem value='vacation'>Vacation</MenuItem>
+                            <MenuItem value='sickness'>Sickness</MenuItem>
+                            <MenuItem value='other'>Other</MenuItem>
+                        </Select>
+                        <TextField
+                            id="date"
+                            onChange={handleDateToChange}
+                            value={startDate}
+                            label="From:"
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            id="date"
+                            onChange={handleDateFromChange}
+                            value={endDate}
+                            label="To:"
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Grid>
+                    <Table className={classes.table}>
+                        <TableHead>
                             <TableRow>
-                                <TableCell className={classes.textAlignCenter} colSpan={6}>No Data</TableCell>
+                                <TableCell padding="default">Member</TableCell>
+                                <TableCell padding="default">Type of absence</TableCell>
+                                <TableCell padding="default">Period</TableCell>
+                                <TableCell padding="default">Member note</TableCell>
+                                <TableCell padding="default">Status  (Requested/Confirmed/Rejected)</TableCell>
+                                <TableCell padding="default">Admitter note</TableCell>
                             </TableRow>
-                    }
-                </TableBody>
-            </Table>
-            <Pagination
-                count={Math.ceil(getAbsenceList().length / itemsPerPage)}
-                page={page}
-                onChange={handleChange}
-                defaultPage={1}
-                color="primary"
-                size="large"
-                showFirstButton
-                showLastButton
-                classes={{ ul: classes.paginator }}
-            />
+                        </TableHead>
+                        <TableBody>
+                            {
+                                getAbsenceList().length > 0 ? getAbsenceList().slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
+                                    return (
+                                        <TableRow
+                                            key={n.id}
+                                            hover>
+                                            <TableCell>{getName(n.userId)}</TableCell>
+                                            <TableCell>{n.type}</TableCell>
+                                            <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
+                                            <TableCell>{n.memberNote || 'No note available'}</TableCell>
+                                            <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
+                                            <TableCell>{n.admitterNote || 'No note available'}</TableCell>
+                                        </TableRow>
+                                    );
+                                })
+                                    :
+                                    <TableRow>
+                                        <TableCell className={classes.textAlignCenter} colSpan={6}>No Data</TableCell>
+                                    </TableRow>
+                            }
+                        </TableBody>
+                    </Table>
+                    <Pagination
+                        count={Math.ceil(getAbsenceList().length / itemsPerPage)}
+                        page={page}
+                        onChange={handleChange}
+                        defaultPage={1}
+                        color="primary"
+                        size="large"
+                        showFirstButton
+                        showLastButton
+                        classes={{ ul: classes.paginator }}
+                    />
+                </div>
+            }
         </Paper>
     );
 }
