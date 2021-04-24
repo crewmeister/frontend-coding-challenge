@@ -80,9 +80,9 @@ export function AbsenceTable() {
     return (
         <Paper className={classes.paper}>
             <Grid item xs={8}>
-                <Typography variant="h5" gutterBottom>
-                    Filter List
-				</Typography>
+                <Typography variant="h5">
+                    Total {getAbsenceList().length}
+                </Typography>
                 <Select className={classes.select}
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
