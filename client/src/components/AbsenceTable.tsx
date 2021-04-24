@@ -3,8 +3,6 @@ import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@materi
 import { makeStyles } from "@material-ui/styles";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useActions } from "../actions";
-import * as AbsenceListActionList from "../actions/absenceList";
 import { Absences } from "../model/index";
 import { RootState } from "../reducers/index";
 import Pagination from '@material-ui/lab/Pagination';
@@ -15,15 +13,16 @@ import TextField from '@material-ui/core/TextField';
 import { Grid, Typography } from "@material-ui/core";
 
 
-export function AbsenceTableTable() {
+export function AbsenceTable() {
     const classes = useStyles();
     const absenceList = useSelector((state: RootState) => state.absenceList);
     const membersList = useSelector((state: RootState) => state.membersList);
-    const AbsenceListActions = useActions(AbsenceListActionList);
+    const itemsPerPage = 10;
 
     const [vacationType, setVacationType] = React.useState('all');
     const [startDate, setStartDate] = React.useState('');
     const [endDate, setEndDate] = React.useState('');
+    const [page, setPage] = React.useState(1);
 
     const handleSelectChange = (event: any) => {
         setVacationType(event.target.value);
@@ -37,6 +36,10 @@ export function AbsenceTableTable() {
         setEndDate(event.target.value);
     };
 
+    const handleChange = (event: any, value: any) => {
+        setPage(value);
+    };
+
     const filterAbsenceListing = () => {
         return absenceList.filter(obj => obj['type'] === vacationType || vacationType === 'all');
     };
@@ -45,12 +48,6 @@ export function AbsenceTableTable() {
         return filterAbsenceListing();
     };
 
-    const itemsPerPage = 10;
-    const [page, setPage] = React.useState(1);
-
-    const handleChange = (event: any, value: any) => {
-        setPage(value);
-    };
 
     const getName = (userId: string): string => {
         return membersList.find(member => member.userId === userId)?.name || '';

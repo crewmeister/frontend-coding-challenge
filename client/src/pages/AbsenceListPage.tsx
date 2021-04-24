@@ -2,14 +2,11 @@ import { Grid, Typography } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import * as React from "react";
-import { AbsenceTableTable } from "../components";
+import { AbsenceTable } from "../components";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
 import * as MembersListActionList from "../actions/membersList";
 import axios from 'axios';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 
 export function AbsenceListPage() {
     const classes = useStyles();
@@ -17,16 +14,13 @@ export function AbsenceListPage() {
     const MembersListActions = useActions(MembersListActionList);
 
     React.useEffect(() => {
-        axios.get(`http://localhost:3001/absences`)
-            .then(absenceRes => {
-                AbsenceListActions.createAbsenceListing(absenceRes.data.payload);
-            })
-            .then(() => {
-                axios.get(`http://localhost:3001/members`)
-                    .then(membersRes => {
-                        MembersListActions.createMembersListing(membersRes.data.payload);
-                    })
-            })
+        Promise.all([
+            axios.get(`http://localhost:3001/absences`),
+            axios.get(`http://localhost:3001/members`)
+        ]).then(res => {
+            AbsenceListActions.createAbsenceListing(res[0].data.payload);
+            MembersListActions.createMembersListing(res[1].data.payload);
+        })
     }, []);
 
     const [vacationType, setVacationType] = React.useState('all');
@@ -56,7 +50,7 @@ export function AbsenceListPage() {
 				</Typography>
             </Grid>
             <Grid item xs={12}>
-                <AbsenceTableTable />
+                <AbsenceTable />
             </Grid>
         </Grid>
     );

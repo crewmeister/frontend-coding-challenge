@@ -1,1 +1,1 @@
-export * from './AbsenceTableTable';
+export * from './AbsenceTable';
