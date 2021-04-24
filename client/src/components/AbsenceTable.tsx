@@ -126,20 +126,26 @@ export function AbsenceTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {getAbsenceList().slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
-                        return (
-                            <TableRow
-                                key={n.id}
-                                hover>
-                                <TableCell>{getName(n.userId)}</TableCell>
-                                <TableCell>{n.type}</TableCell>
-                                <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
-                                <TableCell>{n.memberNote || 'No note available'}</TableCell>
-                                <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
-                                <TableCell>{n.admitterNote || 'No note available'}</TableCell>
+                    {
+                        getAbsenceList().length > 0 ? getAbsenceList().slice((page - 1) * itemsPerPage, page * itemsPerPage).map((n: Absences) => {
+                            return (
+                                <TableRow
+                                    key={n.id}
+                                    hover>
+                                    <TableCell>{getName(n.userId)}</TableCell>
+                                    <TableCell>{n.type}</TableCell>
+                                    <TableCell>{getPeriod(n.startDate, n.endDate)}</TableCell>
+                                    <TableCell>{n.memberNote || 'No note available'}</TableCell>
+                                    <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
+                                    <TableCell>{n.admitterNote || 'No note available'}</TableCell>
+                                </TableRow>
+                            );
+                        })
+                            :
+                            <TableRow>
+                                <TableCell className={classes.textAlignCenter} colSpan={6}>No Data</TableCell>
                             </TableRow>
-                        );
-                    })}
+                    }
                 </TableBody>
             </Table>
             <Pagination
@@ -174,5 +180,8 @@ const useStyles = makeStyles({
     paginator: {
         justifyContent: "center",
         padding: "10px"
-    }
+    },
+    textAlignCenter: {
+        textAlign: 'center',
+    },
 });
