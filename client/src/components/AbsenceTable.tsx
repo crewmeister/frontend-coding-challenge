@@ -58,7 +58,10 @@ export function AbsenceTable() {
     };
 
     const getPeriod = (startDate: string, endDate: string): string => {
-        return startDate + ' - ' + endDate;
+        const startDateObject = new Date(startDate);
+        const endDateObject = new Date(endDate);
+        return `${startDateObject.getUTCDate()}/${startDateObject.getUTCMonth() + 1}/${startDateObject.getUTCFullYear()}` + ' - ' +
+            `${endDateObject.getUTCDate()}/${endDateObject.getUTCMonth() + 1}/${endDateObject.getUTCFullYear()}`;
     };
 
     const getStatus = (rejectedAt: string, confirmedAt: string): string => {
