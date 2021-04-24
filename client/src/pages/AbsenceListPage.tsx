@@ -7,11 +7,13 @@ import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
 import * as MembersListActionList from "../actions/membersList";
 import axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export function AbsenceListPage() {
     const classes = useStyles();
     const AbsenceListActions = useActions(AbsenceListActionList);
     const MembersListActions = useActions(MembersListActionList);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         Promise.all([
@@ -20,27 +22,9 @@ export function AbsenceListPage() {
         ]).then(res => {
             AbsenceListActions.createAbsenceListing(res[0].data.payload);
             MembersListActions.createMembersListing(res[1].data.payload);
+            setLoading(false)
         })
     }, []);
-
-    const [vacationType, setVacationType] = React.useState('all');
-    const [startDate, setStartDate] = React.useState('');
-    const [endDate, setEndDate] = React.useState('');
-
-    const handleChange = (event: any) => {
-        setVacationType(event.target.value);
-        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
-    };
-
-    const handleDateToChange = (event: any) => {
-        setStartDate(event.target.value);
-        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
-    };
-
-    const handleDateFromChange = (event: any) => {
-        setEndDate(event.target.value);
-        AbsenceListActions.filterAbsenceListing({ endDate: endDate, startDate: startDate, type: vacationType });
-    };
 
     return (
         <Grid container className={classes.root}>
@@ -49,9 +33,13 @@ export function AbsenceListPage() {
                     Absence List
 				</Typography>
             </Grid>
-            <Grid item xs={12}>
-                <AbsenceTable />
-            </Grid>
+            {!loading ?
+                <Grid item xs={12}>
+                    <AbsenceTable />
+                </Grid>
+                :
+                <CircularProgress size={200} />
+            }
         </Grid>
     );
 }
