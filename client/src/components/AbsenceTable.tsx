@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import { Grid, Typography } from "@material-ui/core";
 
 
-export function AbsenceTable() {
+export default function AbsenceTable() {
     const classes = useStyles();
     const absenceList = useSelector((state: RootState) => state.absenceList);
     const membersList = useSelector((state: RootState) => state.membersList);

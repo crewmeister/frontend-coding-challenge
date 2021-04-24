@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import * as React from "react";
-import { AbsenceTable } from "../components";
+import AbsenceTable from "../components/AbsenceTable";
 import { useActions } from "../actions";
 import * as AbsenceListActionList from "../actions/absenceList";
 import * as MembersListActionList from "../actions/membersList";

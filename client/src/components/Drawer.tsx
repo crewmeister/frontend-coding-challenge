@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { useActions } from '../actions';
 import * as ConfigActions from '../actions/config';
 
-export function Drawer() {
+export default function Drawer() {
     const classes = useStyles();
     const drawerOpen: boolean = useSelector((state: RootState) => state.drawerOpen);
     const configActions: typeof ConfigActions = useActions(ConfigActions);

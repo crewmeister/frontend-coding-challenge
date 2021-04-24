@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import * as React from "react";
 import { Router } from "react-router-dom";
 import { RouterSwitch } from 'react-typesafe-routes';
-import { Drawer } from "./components/Drawer";
+import Drawer from "./components/Drawer";
 import { history } from "./configureStore";
 import { withRoot } from "./withRoot";
 import { router } from "./Router";
