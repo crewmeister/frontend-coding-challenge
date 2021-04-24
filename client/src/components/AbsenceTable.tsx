@@ -41,7 +41,11 @@ export function AbsenceTable() {
     };
 
     const filterAbsenceListing = () => {
-        return absenceList.filter(obj => obj['type'] === vacationType || vacationType === 'all');
+        return absenceList.filter(obj => {
+            return (obj['type'] === vacationType || vacationType === 'all') &&
+                (!startDate || new Date(startDate) < new Date(obj['startDate'])) &&
+                (!endDate || new Date(endDate) > new Date(obj['startDate']))
+        });
     };
 
     const getAbsenceList = (): Absences[] => {
