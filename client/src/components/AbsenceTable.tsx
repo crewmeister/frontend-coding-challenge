@@ -26,14 +26,17 @@ export function AbsenceTable() {
 
     const handleSelectChange = (event: any) => {
         setVacationType(event.target.value);
+        setPage(1);
     };
 
     const handleDateToChange = (event: any) => {
         setStartDate(event.target.value);
+        setPage(1);
     };
 
     const handleDateFromChange = (event: any) => {
         setEndDate(event.target.value);
+        setPage(1);
     };
 
     const handleChange = (event: any, value: any) => {
