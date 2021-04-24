@@ -25,13 +25,8 @@ export function AbsenceTableTable() {
     const [startDate, setStartDate] = React.useState('');
     const [endDate, setEndDate] = React.useState('');
 
-    const updatePages = () => {
-        setNoOfPages(Math.ceil(getAbsenceList().length / itemsPerPage));
-    };
-
     const handleSelectChange = (event: any) => {
         setVacationType(event.target.value);
-        updatePages();
     };
 
     const handleDateToChange = (event: any) => {
@@ -52,9 +47,6 @@ export function AbsenceTableTable() {
 
     const itemsPerPage = 10;
     const [page, setPage] = React.useState(1);
-    const [noOfPages, setNoOfPages] = React.useState(
-        Math.ceil(absenceList.length / itemsPerPage)
-    );
 
     const handleChange = (event: any, value: any) => {
         setPage(value);
@@ -143,9 +135,8 @@ export function AbsenceTableTable() {
                     })}
                 </TableBody>
             </Table>
-            noOfPages:{noOfPages}
             <Pagination
-                count={noOfPages}
+                count={Math.ceil(getAbsenceList().length / itemsPerPage)}
                 page={page}
                 onChange={handleChange}
                 defaultPage={1}
