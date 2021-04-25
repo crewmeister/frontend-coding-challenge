@@ -12,6 +12,28 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { Grid, Typography } from "@material-ui/core";
 
+const useStyles = makeStyles({
+    paper: {
+        width: "100%",
+        minWidth: 260,
+        display: "inline-block",
+    },
+    select: {
+        height: '48px',
+        marginRight: '2px',
+        width: '150px',
+    },
+    table: {
+        width: "100%",
+    },
+    paginator: {
+        justifyContent: "center",
+        padding: "10px"
+    },
+    textAlignCenter: {
+        textAlign: 'center',
+    },
+});
 
 export default function AbsenceTable() {
     const classes = useStyles();
@@ -173,25 +195,3 @@ export default function AbsenceTable() {
     );
 }
 
-const useStyles = makeStyles({
-    paper: {
-        width: "100%",
-        minWidth: 260,
-        display: "inline-block",
-    },
-    select: {
-        height: '48px',
-        marginRight: '2px',
-        width: '150px',
-    },
-    table: {
-        width: "100%",
-    },
-    paginator: {
-        justifyContent: "center",
-        padding: "10px"
-    },
-    textAlignCenter: {
-        textAlign: 'center',
-    },
-});

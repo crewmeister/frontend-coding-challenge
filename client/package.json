@@ -38,6 +38,10 @@
         "not op_mini all",
         "ie 11"
     ],
+    "peerDependencies": {
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0"
+    },
     "devDependencies": {
         "@types/jest": "24.0.25",
         "@types/node": "12.12.18",
@@ -47,6 +51,7 @@
         "@types/react-router-dom": "5.1.6",
         "@types/redux-logger": "3.0.8",
         "@types/webpack-env": "1.16.0",
+        "copy-webpack-plugin": "^8.1.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16.3": "^1.7.4",
         "enzyme-to-json": "^3.6.2",

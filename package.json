@@ -4,12 +4,8 @@
     "description": "<p align=\"center\">\r   <img src=\"https://crewmeister.com/images/logo_crewmeister_without_text.svg\" />\r </p>",
     "main": "index.js",
     "dependencies": {
-        "@material-ui/core": "^4.11.3",
         "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "material-table": "^1.69.3",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "express": "^4.17.1"
     },
     "devDependencies": {},
     "scripts": {
