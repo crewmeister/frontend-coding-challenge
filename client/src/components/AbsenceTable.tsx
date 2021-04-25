@@ -36,15 +36,15 @@ const useStyles = makeStyles({
 });
 
 export default function AbsenceTable() {
-    const classes = useStyles();
-    const absenceList = useSelector((state: RootState) => state.absenceList);
-    const membersList = useSelector((state: RootState) => state.membersList);
-    const itemsPerPage = 10;
-
     const [vacationType, setVacationType] = React.useState('all');
     const [startDate, setStartDate] = React.useState('');
     const [endDate, setEndDate] = React.useState('');
     const [page, setPage] = React.useState(1);
+
+    const classes = useStyles();
+    const absenceList = useSelector((state: RootState) => state.absenceList);
+    const membersList = useSelector((state: RootState) => state.membersList);
+    const itemsPerPage = 10;
 
     const handleSelectChange = (event: any) => {
         setVacationType(event.target.value);
