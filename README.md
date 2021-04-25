@@ -1,84 +1,16 @@
-<p align="center">
-  <img src="https://crewmeister.com/images/logo_crewmeister_without_text.svg" />
-</p>
+## How To set up
 
-# 🚀 Crewmeister coding challenge - Frontend (React)
+1.  Git clone the repo
+2.  Run npm i in the root directory
+3.  Run 'cd client' 
+4.  Run 'npm i' 
+5.  Go back to root directory
+6.  Run 'npm start' (to run the node js server to return api response to FE)
+7.  Run 'npm run client' (to run the FE application)
+8.  Open localhost:3000 in browser
 
-Hello and thanks in participating in the crewmeister coding challenge. This coding exercise will help us get a better feeling about your coding process.
 
-If you have any questions, we're happy to help you. Reach the devs at challenge@crewmeister.com.
+## How To run tests
 
-## Context
-
-At Crewmeister we like to work closely with our clients, listening to their demands and developing solutions for their problems. One of the most requested features is a way for company owners to manage sickness and vacations of employees.
-
-We decided to implement this feature for our clients and we are calling it the Absence Manager.
-
-## Product Requirements
-
-- [ ] I want to see a list of absences including the names of the employees.
-- [ ] I want to see the first 10 absences, with the ability to paginate.
-- [ ] I want to see a total number of absences.
-- [ ] For each absence I want to see:
-  - [ ] Member name
-  - [ ] Type of absence
-  - [ ] Period
-  - [ ] Member note (when available)
-  - [ ] Status (can be 'Requested', 'Confirmed' or 'Rejected')
-  - [ ] Admitter note (when available)
-- [ ] I want to filter absences by type.
-- [ ] I want to filter absences by date.
-- [ ] I want to see a loading state until the list is available.
-- [ ] I want to see an error state if the list is unavailable.
-- [ ] I want to see an empty state if there are no results.
-- [ ] (Bonus) I can generate an iCal file and import it into outlook.
-
-## Your Mission
-
-Create the React application that satisfies all must-have requirements above, plus any nice-to-have requirements you wish to include.
-
-We provided a couple of JSON files with the mock data necessary to implement the screens, you can use the files straight into the frontend or create a small API (bonus), it's your choice.
-
-You can use any boilerplate/approach you prefer (nextjs, create react app, ...), but try to keep it simple. We encourage you to use your favorite tools and packages to build a solid React application.
-
-You can assume that you do not have to support legacy browsers. Feel free to use modern features such as **fetch** or **flexbox**.
-
-(bonus) Host the website on the service of your choice (Heroku, AWS, GCloud, ...).
-
-Optional: build the project and deploy (ie make it available as a static project) on Github Pages, otherwise please provide detailed instructions on how to start the project locally.
-
-## Tech Requirements
-
-- React
-- Tests: Jest + react-testing-library / enzyme
-- Code Linter
-- Redux is a plus.
-- Typescript is a plus.
-- CSSinJS is a plus: styled-components, styled-system, ...
-
-## Instructions
-
-- Fork this repo
-- The challenge is on!
-- Build a performant, clean and well-structured solution.
-- Commit early and often. We want to be able to check your progress.
-- Include instructions on how to run your project.
-- Please complete your working solution within 7 days of receiving this challenge.
-- Whenever you're done please create a PR against this repo.
-
-We'll review your submission as soon as possible. Key-points we're going to review:
-
-- Naming (files, functions, components, ...).
-- Tests.
-- Code structure, readability, performance and consistency.
-- function lengths.
-- Commits + commit messages.
-- Clean code.
-
-An essential part of the challenge is also coming up with your own solutions and making reasonable assumptions about the implementation of the acceptance criteria.
-
-## That's it!
-
-Happy coding!
-
-<img src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" data-canonical-src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" width="150" height="150" />
+1.  Cd to client folder 
+2.  Run 'npm test'
