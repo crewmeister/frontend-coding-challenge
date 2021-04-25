@@ -104,7 +104,7 @@ export default function AbsenceTable() {
         <Paper className={classes.paper}>
             {!membersList || !absenceList &&
                 <div>
-                    Error in fetch data
+                    Error in fetching data
                 </div>
             }
             {membersList && absenceList &&

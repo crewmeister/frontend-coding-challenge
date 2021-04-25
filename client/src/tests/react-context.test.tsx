@@ -1,6 +1,6 @@
 import React from 'react';
-import App from './App';
-import AbsenceTable from './components/AbsenceTable';
+import App from '../App';
+import AbsenceTable from '../components/AbsenceTable';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store';
@@ -57,6 +57,9 @@ const mockMemberList = [
 describe('Test Wrapper', () => {
     const initialState = { membersList: mockMemberList, absenceList: mockAbsenceList }
     const initialStateEmpty = { membersList: [], absenceList: [] }
+    const initialStateMemberListEmpty = { membersList: null, absenceList: mockAbsenceList }
+    const initialStateAbsenceListEmpty = { membersList: mockMemberList, absenceList: null }
+    const initialStateAbsenceNoData = { membersList: null, absenceList: null }
     let mockStore = configureStore()
     let store: any;
 
@@ -69,24 +72,33 @@ describe('Test Wrapper', () => {
             store = mockStore(initialState)
             render(<Provider store={store}><App /></Provider>);
             expect(screen.getByText('Please proceed to Absence List screen to view the staff that is absent and their details'))
-                .toHaveTextContent('Please proceed to Absence List screen to view the staff that is absent and their details')
+                .toHaveTextContent('Please proceed to Absence List screen to view the staff that is absent and their details');
         });
     });
 
     describe('AbsenceTable', () => {
-        it('should render correctly in "debug" mode', () => {
+        it('should show data being shown, with the Member name being shown as Max', () => {
             store = mockStore(initialState);
             render(<Provider store={store}><AbsenceTable /></Provider>);
 
-            // console.log(screen);
-            // console.log(screen.debug());
+            expect(screen.getByText('Max'))
+                .toHaveTextContent('Max');
         });
-    });
 
-    describe('AbsenceTable', () => {
-        it('should render correctly in "debug" mode', () => {
+        it('should render and show "No data"', () => {
             store = mockStore(initialStateEmpty);
             render(<Provider store={store}><AbsenceTable /></Provider>);
+
+            expect(screen.getByText('No Data'))
+                .toHaveTextContent('No Data');
+        });
+
+        it('should render and show "No data"', () => {
+            store = mockStore(initialStateEmpty);
+            render(<Provider store={store}><AbsenceTable /></Provider>);
+
+            expect(screen.getByText('No Data'))
+                .toHaveTextContent('No Data');
         });
     });
 });
