@@ -57,9 +57,6 @@ const mockMemberList = [
 describe('Test Wrapper', () => {
     const initialState = { membersList: mockMemberList, absenceList: mockAbsenceList }
     const initialStateEmpty = { membersList: [], absenceList: [] }
-    const initialStateMemberListEmpty = { membersList: null, absenceList: mockAbsenceList }
-    const initialStateAbsenceListEmpty = { membersList: mockMemberList, absenceList: null }
-    const initialStateAbsenceNoData = { membersList: null, absenceList: null }
     let mockStore = configureStore()
     let store: any;
 
