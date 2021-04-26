@@ -191,7 +191,7 @@ export default function AbsenceTable() {
                                             <TableCell>
                                                 <ICalendarLink event={getIcalFormat(n)}>
                                                     Add to Calendar
-                                            </ICalendarLink>;
+                                            </ICalendarLink>
                                             </TableCell>
                                         </TableRow>
                                     );

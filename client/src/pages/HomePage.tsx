@@ -1,7 +1,6 @@
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import * as React from "react";
-import ICalendarLink from "react-icalendar-link";
 
 export function HomePage() {
     const classes = useStyles();
@@ -18,9 +17,6 @@ export function HomePage() {
             <Typography variant="h4" gutterBottom>
                 Please proceed to Absence List screen to view the staff that is absent and their details
             </Typography>
-            <ICalendarLink event={event}>
-                Add to Calendar
-      </ICalendarLink>;
         </div>
     );
 }
