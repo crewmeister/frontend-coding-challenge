@@ -6,11 +6,20 @@ import { useSelector } from "react-redux";
 import { Absences } from "../model/index";
 import { RootState } from "../reducers/index";
 import Pagination from '@material-ui/lab/Pagination';
+import ICalendarLink from "react-icalendar-link";
 
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { Grid, Typography } from "@material-ui/core";
+
+interface iCalType {
+    title: string;
+    description: string;
+    startTime: string;
+    endTime: string;
+    location: string;
+};
 
 const useStyles = makeStyles({
     paper: {
@@ -100,6 +109,16 @@ export default function AbsenceTable() {
         return 'Requested'
     };
 
+    const getIcalFormat = (values: any): iCalType => {
+        return {
+            title: values['memberNote'],
+            description: values['admitterNote'],
+            startTime: values['startDate'],
+            endTime: values['endDate'],
+            location: values['type'] === 'Vacation' ? 'Remote' : 'Sick'
+        }
+    }
+
     return (
         <Paper className={classes.paper}>
             {!membersList || !absenceList &&
@@ -153,6 +172,7 @@ export default function AbsenceTable() {
                                 <TableCell padding="default">Member note</TableCell>
                                 <TableCell padding="default">Status  (Requested/Confirmed/Rejected)</TableCell>
                                 <TableCell padding="default">Admitter note</TableCell>
+                                <TableCell padding="default">Download ICal File</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -168,6 +188,11 @@ export default function AbsenceTable() {
                                             <TableCell>{n.memberNote || 'No note available'}</TableCell>
                                             <TableCell>{getStatus(n.rejectedAt, n.confirmedAt)}</TableCell>
                                             <TableCell>{n.admitterNote || 'No note available'}</TableCell>
+                                            <TableCell>
+                                                <ICalendarLink event={getIcalFormat(n)}>
+                                                    Add to Calendar
+                                            </ICalendarLink>;
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })
