@@ -1,0 +1,27 @@
+{
+    "name": "frontend-coding-challenge",
+    "version": "1.0.0",
+    "description": "<p align=\"center\">\r   <img src=\"https://crewmeister.com/images/logo_crewmeister_without_text.svg\" />\r </p>",
+    "main": "index.js",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node api/index.js",
+        "client": "cd client && npm start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/crewmeister/frontend-coding-challenge.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/crewmeister/frontend-coding-challenge/issues"
+    },
+    "homepage": "https://github.com/crewmeister/frontend-coding-challenge#readme"
+}
