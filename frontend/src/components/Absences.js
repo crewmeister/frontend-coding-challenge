@@ -10,6 +10,7 @@ import actions from "../redux/actions";
 import TableRow from "./TableRow";
 import TableHeader from "./TableHeader";
 import CustomModal from "./CustomModal";
+import AbsenceDetail from "./AbsenceDetail";
 
 const Absences = (props) => {
   const { absences = [], loading = false, total = 0 } = props;
@@ -82,8 +83,8 @@ const Absences = (props) => {
           <Row>
             <Col xs={12} lg={12}>
               <ReactPaginate
-                previousLabel="previous"
-                nextLabel={"next"}
+                previousLabel="Previous"
+                nextLabel={"Next"}
                 breakLabel={"..."}
                 pageCount={count}
                 marginPagesDisplayed={2}
@@ -104,7 +105,9 @@ const Absences = (props) => {
           </Row>
         )}
       </Col>
-      <CustomModal />
+      <CustomModal>
+        <AbsenceDetail />
+      </CustomModal>
     </Row>
   );
 };
