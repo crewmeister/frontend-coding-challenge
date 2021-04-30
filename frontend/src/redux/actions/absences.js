@@ -23,21 +23,10 @@ export function getAbsences(payload) {
       })
       .catch((err) => {
         dispatch({
-          type: types.SET_LOADING,
+          type: types.SET_ERROR,
           payload: false,
         });
         return reject(err);
       })
   );
-}
-
-export function handleModal(payload) {
-  return new Promise((resolve, reject) => {
-    dispatch({
-      type: types.HANDLE_MODAL,
-      payload: payload,
-    });
-
-    return resolve(payload);
-  });
 }

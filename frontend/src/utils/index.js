@@ -25,8 +25,28 @@ export function getStatus(confirmedAt, rejectedAt) {
 }
 
 export function capitalize(str) {
+  if (!str) {
+    return "";
+  }
+
   const lower = str.toLowerCase();
   const upper = str.charAt(0).toUpperCase();
 
   return upper + lower.slice(1);
+}
+
+export function getNumberOfDays(startDate, endDate) {
+  return endDate.diff(startDate, "days") + 1;
+}
+
+export function handleMessage(loading, error, noData) {
+  if (error) {
+    return "Something went wrong with backend.";
+  }
+  if (loading) {
+    return "Loading...";
+  }
+  if (noData) {
+    return "No Data Found.";
+  }
 }

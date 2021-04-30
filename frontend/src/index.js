@@ -8,6 +8,9 @@ import { Router } from "react-router";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { Container } from "react-bootstrap";
+import "react-dates/initialize";
+
+import "react-dates/lib/css/_datepicker.css";
 
 import Routes from "./routes";
 import store from "./redux/store";
