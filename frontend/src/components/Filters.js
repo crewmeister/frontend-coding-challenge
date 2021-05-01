@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Col, Row, Form } from "react-bootstrap";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
-import moment from "moment";
 
 //Styled components
 import FormControllWrapper from "./styled/FormControllWrapper";
 import DatePickerWrapper from "./styled/DatePickerWrapper";
 
-const Filters = ({ total, changeStatus }) => {
+const Filters = ({ total, changeStatus, changeDates }) => {
   const [state, setState] = useState({
     status: "",
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: null,
+    endDate: null,
     focusedInput: null,
   });
 
@@ -32,6 +31,8 @@ const Filters = ({ total, changeStatus }) => {
       startDate,
       endDate,
     });
+
+    changeDates(startDate, endDate);
   };
 
   return (

@@ -6,13 +6,7 @@ import moment from "moment";
 import List from "./styled/List";
 import ActionButton from "./styled/ActionButton";
 
-import {
-  trimText,
-  getUser,
-  getStatus,
-  capitalize,
-  getNumberOfDays,
-} from "../utils";
+import { trimText, getStatus, capitalize, getNumberOfDays } from "../utils";
 
 const TableRow = ({
   index,
@@ -20,7 +14,7 @@ const TableRow = ({
   memberNote,
   noData,
   text,
-  user,
+  user = {},
   admitterNote,
   confirmedAt,
   rejectedAt,
@@ -28,7 +22,7 @@ const TableRow = ({
   startDate,
   endDate,
 }) => {
-  const { name } = getUser(user);
+  const { name } = user;
   const start = moment(startDate);
   const end = moment(endDate);
   const days = getNumberOfDays(start, end);

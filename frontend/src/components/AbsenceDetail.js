@@ -2,10 +2,10 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import moment from "moment";
 
-import { getUser, getStatus, capitalize, getNumberOfDays } from "../utils";
+import { getStatus, capitalize, getNumberOfDays } from "../utils";
 
 const AbsenceDetail = ({
-  user,
+  user = {},
   type,
   startDate,
   endDate,
@@ -13,7 +13,7 @@ const AbsenceDetail = ({
   memberNote,
   admitterNote,
 }) => {
-  const { name } = getUser(user);
+  const { name } = user;
   const start = moment(startDate);
   const end = moment(endDate);
   const days = getNumberOfDays(start, end);

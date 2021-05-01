@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const AbsenceSchema = mongoose.Schema({
   admitterId: {
-    required: true,
     type: Number,
   },
   admitterNote: {
@@ -41,12 +40,10 @@ const AbsenceSchema = mongoose.Schema({
     required: true,
     type: Number,
   },
-});
-
-AbsenceSchema.virtual("member", {
-  ref: "User", // The model to use
-  localField: "userId", // Find people where `localField`
-  foreignField: "userId", // is equal to `foreignField`
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = mongoose.model("Absence", AbsenceSchema);

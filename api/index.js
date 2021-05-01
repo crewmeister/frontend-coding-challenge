@@ -23,50 +23,82 @@ mongoose.connect(
 
 //Routes for the app
 app.get("/api/absences", async (req, res) => {
-  const { limit = 10, page = 1, keyword = "" } = req.query;
-  const skip = (parseInt(page) - 1) * parseInt(limit);
-
   try {
-    const absences = await Absence.aggregate([
-      {
-        $lookup: {
-          from: "users",
-          localField: "userId",
-          foreignField: "userId",
-          as: "user",
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          __v: 0,
-          userId: 0,
-        },
-      },
-      {
-        $limit: parseInt(limit) + skip,
-      },
-      {
-        $skip: skip,
-      },
-    ]);
+    const {
+      limit = 10,
+      page = 1,
+      status = "",
+      startDate = null,
+      endDate = null,
+    } = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
 
+    //Status related filters
+    let match = getStatusForTotal(status);
+
+    //Start date filter
+    if (startDate) {
+      match = {
+        ...match,
+        startDate: { $gte: new Date(parseInt(startDate)) },
+      };
+    }
+
+    //End date filter
+    if (endDate) {
+      match = {
+        ...match,
+        endDate: { $lte: new Date(parseInt(endDate)) },
+      };
+    }
+
+    //Querying in absences table
+    const absences = await Absence.find(match)
+      .populate("user")
+      .limit(parseInt(limit))
+      .skip(skip);
+
+    //Returning payload
     res.json({
       message: "Success",
       payload: absences,
-      total: await getTotalAbsences(),
+      total: await getTotalAbsences(match),
     });
   } catch (e) {
     res.json(e);
   }
 });
 
-async function getTotalAbsences() {
+//This function is responsible to get the total absences in the table
+async function getTotalAbsences(match) {
   try {
-    const absences = await Absence.find();
+    const absences = await Absence.find(match);
     return absences.length;
   } catch (err) {
     return 0;
+  }
+}
+
+//This function is responsible to return the filters for particular status type
+function getStatusForTotal(status) {
+  switch (status) {
+    case "requested":
+      return {
+        confirmedAt: null,
+        rejectedAt: null,
+      };
+
+    case "confirmed":
+      return {
+        confirmedAt: { $ne: null },
+      };
+
+    case "rejected":
+      return {
+        rejectedAt: { $ne: null },
+      };
+    default:
+      return {};
   }
 }
 

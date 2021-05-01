@@ -26,20 +26,27 @@ const Absences = (props) => {
     limit: 10,
     page: 1,
     status: "",
+    startDate: null,
+    endDate: null,
     showModal: false,
     selectedAbsence: null,
   });
 
   const getAbsences = useCallback(() => {
+    const { limit, page, status } = state;
+
     return actions.getAbsences({
-      limit: state.limit,
-      page: state.page,
+      limit,
+      page,
+      status,
+      startDate: state.startDate ? state.startDate.getTime() : "",
+      endDate: state.endDate ? state.endDate.getTime() : "",
     });
   }, [state]);
 
   useEffect(() => {
     getAbsences();
-  }, [state.page, getAbsences]);
+  }, [state, getAbsences]);
 
   const handlePaginationClick = ({ selected }) => {
     setState({
@@ -63,6 +70,14 @@ const Absences = (props) => {
     });
   };
 
+  const changeDates = (startDate, endDate) => {
+    setState({
+      ...state,
+      startDate,
+      endDate,
+    });
+  };
+
   const tableHeaders = [
     "Sr. No.",
     "Member name",
@@ -77,7 +92,11 @@ const Absences = (props) => {
   return (
     <Row>
       <Col xs={12} lg={12}>
-        <Filters total={total} changeStatus={changeStatus} />
+        <Filters
+          total={total}
+          changeStatus={changeStatus}
+          changeDates={changeDates}
+        />
         <Row>
           <Col xs={12} lg={12} className="table-responsive">
             <Table>

@@ -1,5 +1,9 @@
 import { API_URL } from "../../utils/constants";
 
 export function getAbsencesAPI(obj) {
-  return fetch(`${API_URL}/absences?limit=${obj.limit}&page=${obj.page}`);
+  let filters = Object.keys(obj).map((item) => {
+    return `${item}=${obj[item]}`;
+  });
+
+  return fetch(`${API_URL}/absences?${filters.join("&")}`);
 }

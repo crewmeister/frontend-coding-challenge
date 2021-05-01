@@ -4,14 +4,6 @@ export function trimText(str, count) {
   return str.substr(0, count) + "...";
 }
 
-export function getUser(data = []) {
-  if (!data.length) {
-    return "";
-  }
-
-  return data[0];
-}
-
 export function getStatus(confirmedAt, rejectedAt) {
   let status = "Requested";
   if (confirmedAt) {

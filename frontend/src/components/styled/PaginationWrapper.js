@@ -8,4 +8,10 @@ export default styled.div`
   .page-link {
     color: ${(props) => props.theme.primaryColor};
   }
+  .page-item:first-child > .page-link {
+    border-radius: 0px;
+  }
+  .page-item:last-child > .page-link {
+    border-radius: 0px;
+  }
 `;
