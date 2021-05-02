@@ -1,6 +1,6 @@
 import types from "../types";
 import store from "../store";
-import { getAbsencesAPI } from "../apis/absences";
+import { getAbsencesAPI, downloadIcalFileAPI } from "../apis/absences";
 
 const { dispatch } = store;
 
@@ -26,6 +26,19 @@ export function getAbsences(payload) {
           type: types.SET_ERROR,
           payload: false,
         });
+        return reject(err);
+      })
+  );
+}
+
+export function downloadIcalFile(payload) {
+  return new Promise((resolve, reject) =>
+    downloadIcalFileAPI(payload)
+      .then((res) => res.blob())
+      .then((res) => {
+        return resolve(res);
+      })
+      .catch((err) => {
         return reject(err);
       })
   );

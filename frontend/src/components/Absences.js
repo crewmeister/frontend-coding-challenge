@@ -78,6 +78,17 @@ const Absences = (props) => {
     });
   };
 
+  const downloadFile = (id) => {
+    actions.downloadIcalFile(id).then((res) => {
+      const href = window.URL.createObjectURL(res);
+      const a = document.createElement("a");
+      a.download = "event.ics";
+      a.href = href;
+      a.click();
+      a.href = "";
+    });
+  };
+
   const tableHeaders = [
     "Sr. No.",
     "Member name",
@@ -111,6 +122,7 @@ const Absences = (props) => {
                       index={(state.page - 1) * state.limit + (key + 1)}
                       {...absence}
                       toggleModal={() => toggleModal(true, absence)}
+                      downloadFile={downloadFile}
                     />
                   ))
                 ) : (

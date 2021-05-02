@@ -39,7 +39,7 @@ const Filters = ({ total, changeStatus, changeDates }) => {
     <Row>
       <Col xs={12} lg={12} className="mb-3 mt-3">
         <Row>
-          <Col lg={6} xs={12}>
+          <Col lg={6} xs={12} className="d-flex flex-row align-items-center">
             <b>Total: </b>
             {total}
           </Col>
@@ -64,7 +64,6 @@ const Filters = ({ total, changeStatus, changeDates }) => {
               <DateRangePicker
                 onChange={handleDateChange}
                 value={[state.startDate, state.endDate]}
-                maxDate={new Date()}
               />
             </DatePickerWrapper>
           </Col>

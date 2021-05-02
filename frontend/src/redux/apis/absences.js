@@ -7,3 +7,7 @@ export function getAbsencesAPI(obj) {
 
   return fetch(`${API_URL}/absences?${filters.join("&")}`);
 }
+
+export function downloadIcalFileAPI(id) {
+  return fetch(`${API_URL}/ical/${id}`);
+}

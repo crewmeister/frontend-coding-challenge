@@ -1,10 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import ics from "ics";
+import { writeFileSync } from "fs";
+import moment from "moment";
 
 //Importing models
-const User = require("./models/User");
-const Absence = require("./models/Absence");
+import User from "./models/User.js";
+import Absence from "./models/Absence.js";
+
+//Ical file folder
+const __dirname = "./downloads";
 
 //Initialiing app
 const app = express();
@@ -66,6 +72,50 @@ app.get("/api/absences", async (req, res) => {
     });
   } catch (e) {
     res.json(e);
+  }
+});
+
+app.get("/api/ical/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    //Find absence by id
+    const absence = await Absence.findOne({ _id: id }).populate("user");
+
+    const startDate = moment(new Date(absence.startDate));
+    const endDate = moment(new Date(absence.endDate));
+    const days = endDate.diff(startDate, "days");
+    const strDate = new Date(absence.startDate);
+
+    //Creating Calendar event
+    ics.createEvent(
+      {
+        title: `${absence.user.name} wants leave`,
+        description: `${absence.user.name} wants leave due to ${absence.type}`,
+        busyStatus: "BUSY",
+        start: [
+          strDate.getFullYear(),
+          strDate.getMonth() + 1,
+          strDate.getDate(),
+          strDate.getHours(),
+          strDate.getMinutes(),
+        ],
+        duration: { days: days ? days : 1 },
+      },
+      (error, value) => {
+        console.log(error);
+        if (error) {
+          return res.status(500).json({ error });
+        }
+
+        writeFileSync(`${__dirname}/event.ics`, value);
+
+        var file = __dirname + "/event.ics";
+        res.download(file, "event.ics");
+      }
+    );
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 });
 
