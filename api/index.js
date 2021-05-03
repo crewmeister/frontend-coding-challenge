@@ -103,9 +103,8 @@ app.get("/api/ical/:id", async (req, res) => {
         duration: { days: days ? days : 1 },
       },
       (error, value) => {
-        console.log(error);
         if (error) {
-          return res.status(500).json({ error });
+          return res.status(404).json({ error });
         }
 
         writeFileSync(`${__dirname}/event.ics`, value);
@@ -115,12 +114,12 @@ app.get("/api/ical/:id", async (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json({ error });
+    return res.status(404).json({ error });
   }
 });
 
 //This function is responsible to get the total absences in the table
-async function getTotalAbsences(match) {
+export async function getTotalAbsences(match) {
   try {
     const absences = await Absence.find(match);
     return absences.length;
@@ -130,7 +129,7 @@ async function getTotalAbsences(match) {
 }
 
 //This function is responsible to return the filters for particular status type
-function getStatusForTotal(status) {
+export function getStatusForTotal(status) {
   switch (status) {
     case "requested":
       return {
@@ -155,3 +154,5 @@ function getStatusForTotal(status) {
 app.listen(3001, () => {
   console.log("Listening on 3001");
 });
+
+export default app;

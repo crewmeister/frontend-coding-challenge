@@ -1,11 +1,11 @@
 import React from "react";
 
 //Styled components
-import List from "./styled/List";
+import List from "../styled/List";
 
 const TableHeader = ({ data = [] }) => {
   return (
-    <List header>
+    <List header data-testid="table-header">
       {data.map((item, key) => (
         <td key={key}>{item}</td>
       ))}

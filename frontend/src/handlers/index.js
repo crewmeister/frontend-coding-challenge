@@ -28,10 +28,14 @@ export function capitalize(str) {
 }
 
 export function getNumberOfDays(startDate, endDate) {
+  if (!startDate || !endDate) {
+    return 0;
+  }
+
   return endDate.diff(startDate, "days") + 1;
 }
 
-export function handleMessage(loading, error, noData) {
+export function handleMessage(loading = false, error = false, noData = false) {
   if (error) {
     return "Something went wrong with backend.";
   }
@@ -41,4 +45,6 @@ export function handleMessage(loading, error, noData) {
   if (noData) {
     return "No Data Found.";
   }
+
+  return "";
 }

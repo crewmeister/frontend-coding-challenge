@@ -3,8 +3,8 @@ import { Col, Row, Form } from "react-bootstrap";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
 //Styled components
-import FormControllWrapper from "./styled/FormControllWrapper";
-import DatePickerWrapper from "./styled/DatePickerWrapper";
+import FormControllWrapper from "../styled/FormControllWrapper";
+import DatePickerWrapper from "../styled/DatePickerWrapper";
 
 const Filters = ({ total, changeStatus, changeDates }) => {
   const [state, setState] = useState({
@@ -36,16 +36,21 @@ const Filters = ({ total, changeStatus, changeDates }) => {
   };
 
   return (
-    <Row>
+    <Row data-testid="filters">
       <Col xs={12} lg={12} className="mb-3 mt-3">
         <Row>
-          <Col lg={6} xs={12} className="d-flex flex-row align-items-center">
+          <Col
+            lg={6}
+            xs={12}
+            className="d-flex flex-row align-items-center"
+            data-testid="total"
+          >
             <b>Total: </b>
             {total}
           </Col>
           <Col lg={3} xs={12}>
             <Form.Group>
-              <FormControllWrapper>
+              <FormControllWrapper data-testid="status">
                 <Form.Control
                   as="select"
                   onChange={handleChangeStatus}
@@ -60,7 +65,7 @@ const Filters = ({ total, changeStatus, changeDates }) => {
             </Form.Group>
           </Col>
           <Col lg={3} xs={12}>
-            <DatePickerWrapper>
+            <DatePickerWrapper data-testid="date-picker">
               <DateRangePicker
                 onChange={handleDateChange}
                 value={[state.startDate, state.endDate]}

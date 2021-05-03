@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 //Styled Components
-import Modal from "./styled/Modal";
-import ModalContent from "./styled/ModalContent";
-import ModalBody from "./styled/ModalBody";
-import ModalHeader from "./styled/ModalHeader";
-import ModalFooter from "./styled/ModalFooter";
-import Button from "./styled/Button";
+import Modal from "../styled/Modal";
+import ModalContent from "../styled/ModalContent";
+import ModalBody from "../styled/ModalBody";
+import ModalHeader from "../styled/ModalHeader";
+import ModalFooter from "../styled/ModalFooter";
+import Button from "../styled/Button";
 
 const CustomModal = ({ showModal, children, toggleModal, title }) => {
   const [show, setShow] = useState(false);

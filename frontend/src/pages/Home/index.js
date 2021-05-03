@@ -2,10 +2,10 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 
 //Styled components
-import Heading from "../components/styled/Heading";
+import Heading from "../../components/styled/Heading";
 
 //Components
-import Absences from "../components/Absences";
+import Absences from "../../components/Absences";
 
 const Home = () => {
   return (

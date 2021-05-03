@@ -3,11 +3,16 @@ import { BsFillEyeFill, BsDownload } from "react-icons/bs";
 import moment from "moment";
 
 //Styled components
-import List from "./styled/List";
-import ActionButton from "./styled/ActionButton";
-import Badge from "./styled/Badge";
+import List from "../styled/List";
+import ActionButton from "../styled/ActionButton";
+import Badge from "../styled/Badge";
 
-import { trimText, getStatus, capitalize, getNumberOfDays } from "../utils";
+import {
+  trimText,
+  getStatus,
+  capitalize,
+  getNumberOfDays,
+} from "../../handlers";
 
 const TableRow = ({
   _id,
@@ -32,7 +37,7 @@ const TableRow = ({
   const status = getStatus(confirmedAt, rejectedAt);
 
   return (
-    <List>
+    <List data-testid="table-row">
       {noData ? (
         <td colSpan={8} className="text-center">
           {text}

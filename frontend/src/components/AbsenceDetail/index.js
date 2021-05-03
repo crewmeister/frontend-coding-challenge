@@ -2,21 +2,23 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import moment from "moment";
 
-import { getStatus, capitalize, getNumberOfDays } from "../utils";
+import { getStatus, capitalize, getNumberOfDays } from "../../handlers";
 
 const AbsenceDetail = ({
   user = {},
   type,
   startDate,
   endDate,
-  status,
   memberNote,
   admitterNote,
+  confirmedAt,
+  rejectedAt,
 }) => {
   const { name } = user;
   const start = moment(startDate);
   const end = moment(endDate);
   const days = getNumberOfDays(start, end);
+  const status = getStatus(confirmedAt, rejectedAt);
 
   return (
     <Row>
@@ -44,7 +46,21 @@ const AbsenceDetail = ({
           <Col xs={12} lg={6}>
             <b>Status</b>
             <br />
-            {getStatus(status)}
+            {status}
+          </Col>
+        </Row>
+      </Col>
+      <Col xs={12} lg={12} className="mt-2">
+        <Row>
+          <Col xs={12} lg={6}>
+            <b>Start Date</b>
+            <br />
+            {moment(startDate).format("YYYY-MM-DD")}
+          </Col>
+          <Col xs={12} lg={6}>
+            <b>End Date</b>
+            <br />
+            {moment(endDate).format("YYYY-MM-DD")}
           </Col>
         </Row>
       </Col>

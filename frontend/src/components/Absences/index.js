@@ -4,19 +4,19 @@ import { connect } from "react-redux";
 import ReactPaginate from "react-paginate";
 
 //Actions
-import actions from "../redux/actions";
+import actions from "../../redux/actions";
 
 //Styled Components
-import PaginationWrapper from "./styled/PaginationWrapper";
+import PaginationWrapper from "../styled/PaginationWrapper";
 
 //Components
-import TableRow from "./TableRow";
-import TableHeader from "./TableHeader";
-import CustomModal from "./CustomModal";
-import AbsenceDetail from "./AbsenceDetail";
-import Filters from "./Filters";
+import TableRow from "../TableRow";
+import TableHeader from "../TableHeader";
+import CustomModal from "../CustomModal";
+import AbsenceDetail from "../AbsenceDetail";
+import Filters from "../Filters";
 
-import { handleMessage } from "../utils";
+import { handleMessage } from "../../handlers";
 
 const Absences = (props) => {
   const { absences = [], loading = false, total = 0, error = false } = props;
@@ -94,14 +94,14 @@ const Absences = (props) => {
     "Member name",
     "Type of absence",
     "Period",
-    "Member Note",
+    "Member note",
     "Status",
-    "Admitter Note",
+    "Admitter note",
     "Actions",
   ];
 
   return (
-    <Row>
+    <Row data-testid="absences">
       <Col xs={12} lg={12}>
         <Filters
           total={total}
@@ -138,7 +138,7 @@ const Absences = (props) => {
         {!!absences.length && (
           <Row>
             <Col xs={12} lg={12}>
-              <PaginationWrapper>
+              <PaginationWrapper data-testid="pagination">
                 <ReactPaginate
                   previousLabel="Previous"
                   nextLabel={"Next"}
