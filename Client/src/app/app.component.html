@@ -1,0 +1,82 @@
+<div>
+  <div class="align-center">
+     <img  class="images" src="https://crewmeister.com/blog/wp-content/uploads/2015/02/Logo_Crewmeister-google.png"/>
+  </div>
+  <br>
+  <div class="filter-field">
+     <mat-grid-list cols="2" rowHeight="10:1">
+        <mat-grid-tile>
+           <span class="label">Filter by Status&nbsp;&nbsp;&nbsp;</span>
+           <mat-checkbox *ngFor="let statusOption of filterStatusOptions"
+           (change)="fiterForSelectedEvents($event.checked, statusOption.status)">
+           {{ statusOption.status }}<span>&nbsp;&nbsp;&nbsp;</span>
+           </mat-checkbox>
+        </mat-grid-tile>
+        <mat-grid-tile>
+           <mat-form-field appearance="fill">
+              <mat-label> 
+                 <span class="date-picker">
+                 Absense Data Filter
+                 </span>
+              </mat-label>
+              <input matInput [(ngModel)]="selectedDate" [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker" (selectedChanged)="filterOnDates()"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>
+           <button mat-button (click)="filterOnDates()">Apply Date Filter</button>
+           <button mat-button (click)="clearFilterOnDates()">Clear Date Filter</button>
+        </mat-grid-tile>
+     </mat-grid-list>
+  </div>
+  <div>
+     <div *ngIf="loadingIndicator" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner color="primary" mode="indeterminate" [diameter]="70">
+        </mat-progress-spinner>
+     </div>
+     <table class="data-table" *ngIf="!loadingIndicator" id="excel-table" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+     <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let entry"> {{entry.name}} </td>
+     </ng-container>
+     <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let entry"> {{entry.type}} </td>
+     </ng-container>
+     <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Period </th>
+        <td mat-cell *matCellDef="let entry"> {{ getAbsensePeriod(entry.startDate,entry.endDate) }} </td>
+     </ng-container>
+     <ng-container matColumnDef="memberNote">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Member Note </th>
+        <td mat-cell *matCellDef="let entry"> {{(entry.memberNote) ? entry.memberNote : '-'}} </td>
+     </ng-container>
+     <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+        <td mat-cell *matCellDef="let entry"> {{ entry.status }} </td>
+     </ng-container>
+     <ng-container matColumnDef="statusDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status Date</th>
+        <td mat-cell *matCellDef="let entry"> {{ getStatusdate(entry.confirmedAt, entry.rejectedAt)}} </td>
+     </ng-container>
+     <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User Id</th>
+        <td mat-cell *matCellDef="let entry"> {{entry.userId}} </td>
+     </ng-container>
+     <ng-container matColumnDef="noRecords">
+        <td mat-footer-cell *matFooterCellDef>
+           <span *ngIf="error">
+           Error occured while fetching data.
+           </span>
+           <span *ngIf="!error">
+           No Rows to Show.
+           </span>
+        </td>
+     </ng-container>
+     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+     <tr [hidden]="dataSource.filteredData.length > 0" mat-footer-row *matFooterRowDef="dataSource.filteredData.length === 0 ? ['noRecords'] : []" colspan="2"></tr>
+     </table>
+     <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+  </div>
+  <button mat-raised-button class="download-button" (click)="exportExcel()">Download Data (Excel)</button>
+</div>

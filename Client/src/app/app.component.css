@@ -1,0 +1,52 @@
+table.mat-table {
+  width: 90%;
+  margin: auto;
+  border: 3px solid orange;
+  padding: 10px;
+}
+
+.align-center {
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+}
+
+table.mat-table .mat-header-row {
+  background-color: orange;
+}
+
+.filter-field {
+  color: orange;
+  display: inline!important;
+}
+
+table.mat-table .mat-sort-header-button {
+  color: white;
+  font-size: 20px;
+}
+
+.mat-header-cell {
+  color: white!important;
+  font-size: 15px;
+}
+
+.download-button {
+  background-color: orange;
+  color: white;
+  margin-left: 5%;
+}
+
+.label {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.data-filter {
+  margin-left: 50%;
+  color: orange;
+}
+
+.date-picker {
+  color: orange;
+}
