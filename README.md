@@ -58,13 +58,13 @@ Optional: build the project and deploy (ie make it available as a static project
 
 ## Instructions
 
-- Fork this repo
+- Clone this repo.
 - The challenge is on!
 - Build a performant, clean and well-structured solution.
 - Commit early and often. We want to be able to check your progress.
-- Include instructions on how to run your project.
+- Include a README with instructions on how to run your project.
 - Please complete your working solution within 7 days of receiving this challenge.
-- Whenever you're done please create a PR against this repo.
+- Whenever you're done please deliver the project following the instructions below.
 
 We'll review your submission as soon as possible. Key-points we're going to review:
 
@@ -74,8 +74,18 @@ We'll review your submission as soon as possible. Key-points we're going to revi
 - function lengths.
 - Commits + commit messages.
 - Clean code.
+- Good documentation and README instructions.
 
 An essential part of the challenge is also coming up with your own solutions and making reasonable assumptions about the implementation of the acceptance criteria.
+
+## Project delivery instructions
+
+To submit the project for evaluation please follow the steps below:
+
+- Create a **public** repo on your personal Github.
+- Add the new repo as a _remote_ on your local repo.
+- Push your code to your new remote repo.
+- Send us the link!
 
 ## That's it!
 
