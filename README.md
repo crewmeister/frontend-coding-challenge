@@ -85,7 +85,7 @@ To submit the project for evaluation please follow the steps below:
 - Create a **public** repo on your personal Github.
 - Add the new repo as a _remote_ on your local repo.
 - Push your code to your new remote repo.
-- Send us the link!
+- Send us the link! The e-mail is: challenge@crewmeister.com
 
 ## That's it!
 
