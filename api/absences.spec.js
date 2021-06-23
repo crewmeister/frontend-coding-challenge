@@ -1,5 +1,5 @@
-import assert from 'assert';
+import assert from "assert";
 
-it('your tests here', () => {
+it("your tests here", () => {
   assert(false);
 });
