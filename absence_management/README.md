@@ -88,3 +88,21 @@ The json-server starts running on port 3000 by default; but since projects creat
 
 Let's navigate to the address http://localhost:3001/absence in the browser.
 
+### Libraries/Dependencies need to be installed to run the project:
+<hr>
+
+npm install @mui/material
+
+npm install @mui/icons-material
+
+npm install @emotion/react
+
+npm install @emotion/styled
+
+npm install moment
+
+npm install moment-range
+
+### To launch the application, run the command:
+
+npm start
