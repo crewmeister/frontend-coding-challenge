@@ -1,5 +1,6 @@
 import * as React from "react";
 import AbsenceTable from "./AbsenceTable";
+import Filter from "./Filter";
 import { useEffect, useState } from "react";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
@@ -22,7 +23,9 @@ export default function CustomPaginationActionsTable() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [data, setData] = useState([]);
+  const [filterType, setFilterType] = useState("");
   const [absenceList, setAbsenceList] = useState([]);
+  const [filterDate, setFilterDate] = useState(null);
   const [error, setError] = useState(false);
 
   const handleChangePage = (event, newPage) => {
@@ -126,18 +129,55 @@ export default function CustomPaginationActionsTable() {
     fetchMembers();
   }, []);
 
+  useEffect(() => {
+    if (filterType !== "" && filterDate) {
+      setAbsenceList(
+        dataSource.filter(
+          (row) =>
+            row.type.includes(filterType) &&
+            (filterDate.toDateString() ===
+              new Date(row.startDate).toDateString() ||
+              filterDate.toDateString() ===
+                new Date(row.endDate).toDateString())
+        )
+      );
+    } else if (filterType !== "") {
+      setAbsenceList(dataSource.filter((row) => row.type.includes(filterType)));
+    } else if (filterDate) {
+      setAbsenceList(
+        dataSource.filter((row) => {
+          return (
+            filterDate.toDateString() ===
+              new Date(row.startDate).toDateString() ||
+            filterDate.toDateString() === new Date(row.endDate).toDateString()
+          );
+        })
+      );
+    } else {
+      setAbsenceList(dataSource);
+    }
+  }, [filterType, filterDate]);
+
   return (
-    <AbsenceTable
-      columns={columns}
-      rowsPerPage={rowsPerPage}
-      absenceList={absenceList}
-      page={page}
-      getMemberName={getMemberName}
-      getDuration={getDuration}
-      getStatus={getStatus}
-      handleErrorState={handleErrorState}
-      handleChangePage={handleChangePage}
-      handleChangeRowsPerPage={handleChangeRowsPerPage}
-    />
+    <div className="header-top">
+      <Filter
+        filterType={filterType}
+        filterDate={filterDate}
+        setFilterType={setFilterType}
+        setFilterDate={setFilterDate}
+      />
+      <AbsenceTable
+        columns={columns}
+        rowsPerPage={rowsPerPage}
+        absenceList={absenceList}
+        page={page}
+        getMemberName={getMemberName}
+        getDuration={getDuration}
+        getStatus={getStatus}
+        handleErrorState={handleErrorState}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </div>
   );
 }

@@ -103,6 +103,10 @@ npm install moment
 
 npm install moment-range
 
+npm install @mui/lab
+
+npm install date-fns
+
 ### To launch the application, run the command:
 
 npm start

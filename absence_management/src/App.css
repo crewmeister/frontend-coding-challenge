@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.header-top {
+  padding: 10px;
+}
+
+.loading {
+  margin-top: 7rem;
+}
+
+.filter-date {
+  float: right;
+  padding-bottom: 10px;
+}
+
+.filter-type {
+  float: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
