@@ -1,6 +1,7 @@
 import * as React from "react";
-import AbsenceTable from "./AbsenceTable";
+import Loading from "./Loading";
 import Filter from "./Filter";
+import AbsenceTable from "./AbsenceTable";
 import { useEffect, useState } from "react";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
@@ -166,18 +167,22 @@ export default function CustomPaginationActionsTable() {
         setFilterType={setFilterType}
         setFilterDate={setFilterDate}
       />
-      <AbsenceTable
-        columns={columns}
-        rowsPerPage={rowsPerPage}
-        absenceList={absenceList}
-        page={page}
-        getMemberName={getMemberName}
-        getDuration={getDuration}
-        getStatus={getStatus}
-        handleErrorState={handleErrorState}
-        handleChangePage={handleChangePage}
-        handleChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <AbsenceTable
+          columns={columns}
+          rowsPerPage={rowsPerPage}
+          absenceList={absenceList}
+          page={page}
+          getMemberName={getMemberName}
+          getDuration={getDuration}
+          getStatus={getStatus}
+          handleErrorState={handleErrorState}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
     </div>
   );
 }
