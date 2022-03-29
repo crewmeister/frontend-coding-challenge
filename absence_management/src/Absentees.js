@@ -11,9 +11,9 @@ import TableCell from "@mui/material/TableCell";
 const columns = [
   { id: "name", label: "Member Name", minWidth: 100 },
   { id: "type", label: "Type Of Absence", minWidth: 100 },
-  { id: "period", label: "Period", minWidth: 170 },
+  { id: "period", label: "Period", minWidth: 100 },
   { id: "memberNote", label: "Member Note", minWidth: 100 },
-  { id: "status", label: "Status", minWidth: 170 },
+  { id: "status", label: "Status", minWidth: 100 },
   { id: "admitterNote", label: "Admitter Note", minWidth: 100 },
 ];
 
@@ -64,7 +64,7 @@ export default function CustomPaginationActionsTable() {
     fetch("http://localhost:3001/members")
       .then((response) => response.json())
       .then((response) => {
-        //setError(false);
+        setError(false);
         if (response.payload) {
           setError(false);
         } else {

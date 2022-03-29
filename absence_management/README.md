@@ -69,14 +69,35 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# Crewmeister FrontEnd Coding Challenge
+# FrontEnd Coding Challenge
+
+### Libraries/Dependencies need to be installed to run the project:
+<hr>
+
+npm install @mui/material
+
+npm install @mui/icons-material
+
+npm install @mui/lab
+
+npm install @emotion/react
+
+npm install @emotion/styled
+
+npm install moment
+
+npm install moment-range
+
+npm install date-fns
+
+<hr>
 
 To install JSON server globally on your machine, run the command:
 
-### npm install -g json-server
+npm install -g json-server
 <br>
 
-From the root directory of your app, run the json-server using the command npx:
+From the root directory of your app(i.e. absence_management), run the json-server using the command npx:
 
 <br>
 
@@ -87,25 +108,6 @@ From the root directory of your app, run the json-server using the command npx:
 The json-server starts running on port 3000 by default; but since projects created using create-react-app reserve port 3000, we must define an alternate port, such as port 3001, for the json-server.
 
 Let's navigate to the address http://localhost:3001/absence in the browser.
-
-### Libraries/Dependencies need to be installed to run the project:
-<hr>
-
-npm install @mui/material
-
-npm install @mui/icons-material
-
-npm install @emotion/react
-
-npm install @emotion/styled
-
-npm install moment
-
-npm install moment-range
-
-npm install @mui/lab
-
-npm install date-fns
 
 ### To launch the application, run the command:
 
