@@ -1,10 +1,44 @@
-# Getting Started with Create React App
+# Crewmeister FrontEnd Coding Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Libraries/Dependencies need to be installed to run the project:
+<hr>
 
-## Available Scripts
+`npm install @mui/material`
 
-In the project directory, you can run:
+`npm install @mui/icons-material`
+
+`npm install @mui/lab`
+
+`npm install @emotion/react`
+
+`npm install @emotion/styled`
+
+`npm install moment`
+
+`npm install moment-range`
+
+`npm install date-fns`
+
+<hr>
+
+To install JSON server globally on your machine, run the command:
+
+### `npm install -g json-server`
+<br>
+
+From the root directory of your app(i.e. absence_management), run the json-server using the command npx:
+
+<br>
+
+### `npx json-server --port 3001 --watch db.json`
+
+<br>
+
+The json-server starts running on port 3000 by default; but since projects created using create-react-app reserve port 3000, we must define an alternate port, such as port 3001, for the json-server.
+
+Let's navigate to the address http://localhost:3001/absence in the browser.
+
+### To launch the application, run the command:
 
 ### `npm start`
 
@@ -17,98 +51,5 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# FrontEnd Coding Challenge
-
-### Libraries/Dependencies need to be installed to run the project:
-<hr>
-
-npm install @mui/material
-
-npm install @mui/icons-material
-
-npm install @mui/lab
-
-npm install @emotion/react
-
-npm install @emotion/styled
-
-npm install moment
-
-npm install moment-range
-
-npm install date-fns
 
 <hr>
-
-To install JSON server globally on your machine, run the command:
-
-npm install -g json-server
-<br>
-
-From the root directory of your app(i.e. absence_management), run the json-server using the command npx:
-
-<br>
-
-### npx json-server --port 3001 --watch db.json
-
-<br>
-
-The json-server starts running on port 3000 by default; but since projects created using create-react-app reserve port 3000, we must define an alternate port, such as port 3001, for the json-server.
-
-Let's navigate to the address http://localhost:3001/absence in the browser.
-
-### To launch the application, run the command:
-
-npm start

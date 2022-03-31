@@ -116,3 +116,16 @@ h2:after {
   }
 }
 
+.total-absentees {
+  float: left;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
+.header {
+  color: darkorange;
+  font-size: xx-large;
+  float: left;
+  margin-left: 15%;
+  font-weight: 700;
+}

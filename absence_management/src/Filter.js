@@ -4,9 +4,11 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 
-function Filter({ filterType, filterDate, setFilterType, setFilterDate }) {
+function Filter({ filterType, filterDate, setFilterType, setFilterDate, numberOfAbsentees }) {
   return (
     <>
+    <div className="total-absentees">Total Absences: <span data-testid="numAbsentees">{numberOfAbsentees}</span></div>
+    <div className="header">Absence Manager</div>
     <div className="filter-date">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker

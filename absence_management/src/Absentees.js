@@ -22,8 +22,8 @@ export default function CustomPaginationActionsTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
-  const [data, setData] = useState([]);
+  const [absenceData, setAbsenceData] = useState([]);
+  const [memberData, setMemberData] = useState([]);
   const [filterType, setFilterType] = useState("");
   const [absenceList, setAbsenceList] = useState([]);
   const [filterDate, setFilterDate] = useState(null);
@@ -43,12 +43,8 @@ export default function CustomPaginationActionsTable() {
     fetch("http://localhost:3001/absence")
       .then((response) => response.json())
       .then((data) => {
-        if (data.payload) {
-          setError(false);
-        } else {
-          setError(true);
-        }
-        setDataSource(data.payload ? data.payload : []);
+        setError(!data.payload);
+        setAbsenceData(data.payload ? data.payload : []);
         setAbsenceList(data.payload ? data.payload : []);
       })
       .catch((err) => {
@@ -65,12 +61,8 @@ export default function CustomPaginationActionsTable() {
       .then((response) => response.json())
       .then((response) => {
         setError(false);
-        if (response.payload) {
-          setError(false);
-        } else {
-          setError(true);
-        }
-        setData(response.payload ? response.payload : []);
+        setError(!response.payload);
+        setMemberData(response.payload ? response.payload : []);
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +73,7 @@ export default function CustomPaginationActionsTable() {
   }
 
   function getMemberName(userId) {
-    let user = data.find((row) => row.userId === userId);
+    let user = memberData.find((row) => row.userId === userId);
     return user?.name;
   }
 
@@ -109,7 +101,7 @@ export default function CustomPaginationActionsTable() {
       return (
         <TableRow>
           <TableCell colSpan={6} style={{ textAlign: "center" }}>
-            Failed to fetch data
+          No Rows Found 
           </TableCell>
         </TableRow>
       );
@@ -118,7 +110,7 @@ export default function CustomPaginationActionsTable() {
       return (
         <TableRow>
           <TableCell colSpan={6} style={{ textAlign: "center" }}>
-            No Rows Found
+            Failed to fetch data
           </TableCell>
         </TableRow>
       );
@@ -133,7 +125,7 @@ export default function CustomPaginationActionsTable() {
   useEffect(() => {
     if (filterType !== "" && filterDate) {
       setAbsenceList(
-        dataSource.filter(
+        absenceData.filter(
           (row) =>
             row.type.includes(filterType) &&
             (filterDate.toDateString() ===
@@ -143,10 +135,10 @@ export default function CustomPaginationActionsTable() {
         )
       );
     } else if (filterType !== "") {
-      setAbsenceList(dataSource.filter((row) => row.type.includes(filterType)));
+      setAbsenceList(absenceData.filter((row) => row.type.includes(filterType)));
     } else if (filterDate) {
       setAbsenceList(
-        dataSource.filter((row) => {
+        absenceData.filter((row) => {
           return (
             filterDate.toDateString() ===
               new Date(row.startDate).toDateString() ||
@@ -155,7 +147,7 @@ export default function CustomPaginationActionsTable() {
         })
       );
     } else {
-      setAbsenceList(dataSource);
+      setAbsenceList(absenceData);
     }
   }, [filterType, filterDate]);
 
@@ -166,6 +158,7 @@ export default function CustomPaginationActionsTable() {
         filterDate={filterDate}
         setFilterType={setFilterType}
         setFilterDate={setFilterDate}
+        numberOfAbsentees={absenceList.length}
       />
       {loading ? (
         <Loading />
