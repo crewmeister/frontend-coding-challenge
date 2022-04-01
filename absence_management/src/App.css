@@ -45,17 +45,6 @@
   margin-top: 7rem;
 }
 
-.filter-date {
-  float: right;
-  padding-bottom: 10px;
-}
-
-.filter-type {
-  float: right;
-  padding-right: 10px;
-  padding-bottom: 10px;
-}
-
 .spinner-loading {
   border: 10px solid #eee;
   border-right-color: transparent;
@@ -117,15 +106,26 @@ h2:after {
 }
 
 .total-absentees {
-  float: left;
-  margin-top: 10px;
-  font-size: x-large;
+  align-self: flex-end;
 }
 
 .header {
   color: darkorange;
-  font-size: xx-large;
-  float: left;
-  margin-left: 15%;
-  font-weight: 700;
 }
+
+.header-row {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-date {
+  padding-left: 10px;
+}
+
+

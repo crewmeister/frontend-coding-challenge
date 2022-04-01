@@ -112,12 +112,12 @@ function AbsenceTable({
   rowsPerPage,
   absenceList,
   page,
-  getMemberName,
-  getDuration,
-  getStatus,
-  handleErrorState,
-  handleChangePage,
-  handleChangeRowsPerPage,
+  memberName,
+  duration,
+  status,
+  errorState,
+  changePage,
+  changeRowsPerPage,
 }) {
   return (
     <div className="table">
@@ -146,32 +146,32 @@ function AbsenceTable({
             ).map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
-                  {getMemberName(row.userId)}
+                  {memberName(row.userId)}
                 </StyledTableCell>
                 <StyledTableCell style={{ width: 160 }}>
                   {row.type}
                 </StyledTableCell>
                 <StyledTableCell style={{ width: 160 }}>
-                  {getDuration(row.startDate, row.endDate)}
+                  {duration(row.startDate, row.endDate)}
                 </StyledTableCell>
                 <StyledTableCell style={{ width: 160 }}>
                   {row.memberNote}
                 </StyledTableCell>
                 <StyledTableCell style={{ width: 160 }}>
-                  {getStatus(row.confirmedAt, row.createdAt, row.rejectedAt)}
+                  {status(row.confirmedAt, row.createdAt, row.rejectedAt)}
                 </StyledTableCell>
                 <StyledTableCell style={{ width: 160 }}>
                   {row.admitterNote}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
-            {handleErrorState()}
+            {errorState()}
           </TableBody>
           <TableFooter>
             <StyledTableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
+                colSpan={6}
                 count={absenceList.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
@@ -181,8 +181,8 @@ function AbsenceTable({
                   },
                   native: true,
                 }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                onPageChange={changePage}
+                onRowsPerPageChange={changeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
               />
             </StyledTableRow>

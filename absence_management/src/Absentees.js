@@ -48,6 +48,7 @@ export default function CustomPaginationActionsTable() {
         setAbsenceList(data.payload ? data.payload : []);
       })
       .catch((err) => {
+        setError(true);
         console.log(err);
       })
       .finally(() => {
@@ -60,11 +61,11 @@ export default function CustomPaginationActionsTable() {
     fetch("http://localhost:3001/members")
       .then((response) => response.json())
       .then((response) => {
-        setError(false);
         setError(!response.payload);
         setMemberData(response.payload ? response.payload : []);
       })
       .catch((err) => {
+        setError(true);
         console.log(err);
       })
       .finally(() => {
@@ -101,16 +102,16 @@ export default function CustomPaginationActionsTable() {
       return (
         <TableRow>
           <TableCell colSpan={6} style={{ textAlign: "center" }}>
-          No Rows Found 
+          Failed to fetch data
           </TableCell>
         </TableRow>
       );
     }
-    if (absenceList.length === 0) {
+    else if (absenceList.length === 0) {
       return (
         <TableRow>
           <TableCell colSpan={6} style={{ textAlign: "center" }}>
-            Failed to fetch data
+            No Rows Found
           </TableCell>
         </TableRow>
       );
@@ -168,12 +169,12 @@ export default function CustomPaginationActionsTable() {
           rowsPerPage={rowsPerPage}
           absenceList={absenceList}
           page={page}
-          getMemberName={getMemberName}
-          getDuration={getDuration}
-          getStatus={getStatus}
-          handleErrorState={handleErrorState}
-          handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage}
+          memberName={getMemberName}
+          duration={getDuration}
+          status={getStatus}
+          errorState={handleErrorState}
+          changePage={handleChangePage}
+          changeRowsPerPage={handleChangeRowsPerPage}
         />
       )}
     </div>
