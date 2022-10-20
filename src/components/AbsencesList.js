@@ -8,12 +8,12 @@ const useStyles = makeStyles({
   },
 });
 
-const AbsenceList = (props) => {
+const AbsencesList = (props) => {
   // styles
   const classes = useStyles();
 
   // props
-  const absencesList = props.list;
+  const absencesList = props.list || [];
 
 
   // states
@@ -66,7 +66,7 @@ const AbsenceList = (props) => {
 
   return (
     <>
-      <TableContainer className={classes.container}>
+      <TableContainer className={classes.container} data-testid="list-of-absences" >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -123,4 +123,4 @@ const AbsenceList = (props) => {
     </>
   );
 }
-export default AbsenceList;
+export default AbsencesList;
