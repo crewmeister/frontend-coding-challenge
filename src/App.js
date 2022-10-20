@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import AbsenceManager from "./views/AbsenceManager";
-
 import StoreProvider from './store/StoreProvider';
 
 import {

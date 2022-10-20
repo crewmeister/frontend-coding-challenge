@@ -3,17 +3,11 @@ import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
 import {Button, Grid, TextField} from '@material-ui/core';
-
-
-
 import { Dayjs } from 'dayjs';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import moment from "moment";
-
-
 
 import { getFilteredAbsences } from '../actions/absences'
 

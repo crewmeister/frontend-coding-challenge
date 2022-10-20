@@ -1,20 +1,20 @@
 import React, {useEffect,useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Paper} from "@material-ui/core";
 import SearchAbsence from "../components/SearchAbsence";
 import AbsencesList from "../components/AbsencesList";
 import {withBaseLayout} from '../layouts/Base'
 import ErrorBoundary from "../error/Error";
-import {useDispatch, useSelector} from 'react-redux';
-import Paper from "@material-ui/core/Paper";
-import { getAllAbsences } from '../actions/absences'
 import Loader from '../components/shared/Loader';
 import NoDataFound from '../components/shared/NoDataFound';
 import MainHeading from '../components/shared/MainHeading';
+import { getAllAbsences } from '../actions/absences'
 
 function AbsenceManager() {
     const dispatch = useDispatch();
-
+    // get absences from store
     const absencesList = useSelector((state) => state.absences);
-
+    // states
     const [isLoading , setLoading] = useState(true);
     
     useEffect(() => {
@@ -25,11 +25,12 @@ function AbsenceManager() {
         })
     },[dispatch])
 
+    // handlers
     const showLoader = (flag) => {
         setLoading(flag)
     }
     
-
+    // html
     return (
         <ErrorBoundary>
             <Paper style={{margin: "16px 0"}}>

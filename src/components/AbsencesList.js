@@ -1,6 +1,14 @@
 import {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@material-ui/core';
+import {
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TablePagination, 
+  TableRow
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
   container: {
@@ -30,6 +38,7 @@ const AbsencesList = (props) => {
     setPage(0);
   };
 
+  // hander to get duration between 2 dates
   function duration(t0, t1) {
     let d = new Date(t1) - new Date(t0);
     let weekdays = Math.floor(d / 1000 / 60 / 60 / 24 / 7);
