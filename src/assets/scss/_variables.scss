@@ -1,0 +1,76 @@
+// Import Bootstrap variables for use within theme
+// @import "bootstrap/scss/functions.scss";
+// @import "bootstrap/scss/variables.scss";
+@import "./mixins.scss";
+
+//Custom Variables
+$primary:    #22252A;
+$primary-90: lighten-alpha($primary, 0.9);
+$primary-80: lighten-alpha($primary, 0.8);
+$primary-70: lighten-alpha($primary, 0.7);
+$primary-60: lighten-alpha($primary, 0.6);
+$primary-50: lighten-alpha($primary, 0.5);
+$primary-40: lighten-alpha($primary, 0.4);
+$primary-30: lighten-alpha($primary, 0.3);
+$primary-20: lighten-alpha($primary, 0.2);
+$primary-10: lighten-alpha($primary, 0.1);
+$primary-05: lighten-alpha($primary, 0.05);
+$onPrimary:  #ffffff !default;
+
+$brand: #85276B;
+$primaryColor: #85276B;
+$secondaryColor: #2D7558;
+
+:export {
+    primary: $primaryColor;
+    secondary: $secondaryColor;
+}
+
+// Color Variables
+
+$white: #fff !default;
+$gray-100: #f8f9fc !default;
+$gray-200: #eaecf4 !default;
+$gray-300: #dddfeb !default;
+$gray-400: #d1d3e2 !default;
+$gray-500: #b7b9cc !default;
+$gray-600: #858796 !default;
+$gray-700: #6e707e !default;
+$gray-800: #5a5c69 !default;
+$gray-900: #3a3b45 !default;
+
+// Typography
+$body-color: $gray-600 !default;
+
+$font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Noto Color Emoji' !default;
+
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+
+// Spacing Variables
+$topbar-height: 72px;
+$sidebar-width: 80px !default;
+
+
+$navbar-brand-size: 40px;
+
+
+//Custom state colors
+
+$success: #2DB77B;
+$color-sidebar: #253342;
+$color-portlet: #212632;
+$color-table-header: #425B76;
+$color-table-body: #2E3F52;
+$color-input-placeholder:#67676A;
+$color-table-border:#5F6873;
+
+$color-tab-border: #2e3f52;
+$color-active-tab: #202732;
+
+
+$color-night: #121015;
+$color-bayox: #425b76;
+$color-comet: #33475b;
+$color-bombay: #a3a3a6;

@@ -16,21 +16,21 @@ We decided to implement this feature for our clients and we are calling it the A
 
 ## Product Requirements
 
-- [ ] I want to see a list of absences including the names of the employees.
-- [ ] I want to see the first 10 absences, with the ability to paginate.
-- [ ] I want to see a total number of absences.
-- [ ] For each absence I want to see:
-  - [ ] Member name
-  - [ ] Type of absence
-  - [ ] Period
-  - [ ] Member note (when available)
-  - [ ] Status (can be 'Requested', 'Confirmed' or 'Rejected')
-  - [ ] Admitter note (when available)
-- [ ] I want to filter absences by type.
-- [ ] I want to filter absences by date.
-- [ ] I want to see a loading state until the list is available.
+- [ok] I want to see a list of absences including the names of the employees.
+- [ok] I want to see the first 10 absences, with the ability to paginate.
+- [ok] I want to see a total number of absences.
+- [ok] For each absence I want to see:
+  - [ok] Member name
+  - [ok] Type of absence
+  - [ok] Period
+  - [ok] Member note (when available)
+  - [ok] Status (can be 'Requested', 'Confirmed' or 'Rejected')
+  - [ok] Admitter note (when available)
+- [ok] I want to filter absences by type.
+- [ok] I want to filter absences by date.
+- [ok] I want to see a loading state until the list is available.
 - [ ] I want to see an error state if the list is unavailable.
-- [ ] I want to see an empty state if there are no results.
+- [ok] I want to see an empty state if there are no results.
 - [ ] (Bonus) I can generate an iCal file and import it into outlook.
 
 ## Your Mission

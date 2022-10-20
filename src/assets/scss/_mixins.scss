@@ -1,0 +1,5 @@
+//Create solid color shades by reducing opacity
+@function lighten-alpha($color, $alpha) {
+    $rgba: rgba($color, $alpha);
+    @return mix(rgb(red($rgba), green($rgba), blue($rgba)), #ffffff, alpha($rgba) * 100%)
+}
