@@ -20,17 +20,7 @@ export default function configureStore() {
     })
 
     const rootReducer = (state, action) => {
-
-        if (action.type === 'AUTH_LOGOUT_SUCCESS') {
-            Object.keys(state).forEach(sk => {
-                if (state[sk].savable) {
-                    return;
-                }
-
-                state[sk] = undefined;
-            })
-        }
-
+        // if we want to clear all store we can do here
         return mainReducer(state, action)
     }
 
