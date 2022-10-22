@@ -4,6 +4,7 @@
 
 ### if facing error regarding peer dependencies then run this commands:
 `npm config set legacy-peer-deps true`
+`npm i`
 
 ### To launch the application, run the command:
 

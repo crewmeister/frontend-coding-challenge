@@ -26,7 +26,6 @@ export const getAllAbsences = () => async dispatch => {
 
 export const getFilteredAbsences = filters => (dispatch , getState) => {
 
-    console.log(filters);
     const {absences} = getState();
     let filteredAbsences = [];
     if(Object.keys(filters).length > 0){

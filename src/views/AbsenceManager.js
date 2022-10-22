@@ -19,6 +19,7 @@ function AbsenceManager() {
     
     useEffect(() => {
         dispatch(getAllAbsences()).then(res => {
+            // just to exibit loader
             setTimeout(() =>{
                 setLoading(false)
             },1000)
@@ -34,7 +35,6 @@ function AbsenceManager() {
     return (
         <ErrorBoundary>
             <Paper style={{margin: "16px 0"}}>
-                <MainHeading title={"Search"} />
                 <SearchAbsence showLoaderHandler={showLoader} />
             </Paper>
             <Paper className='mt-3'>
