@@ -1,0 +1,91 @@
+// Import Custom Variables
+@import "variables.scss";
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap.scss";
+
+// Import Custom SCSS
+@import "sidebar.scss";
+@import "topbar.scss";
+@import "materialUI.scss";
+@import "icons.scss";
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #121015 !important;
+  color: rgba(229, 229, 229, 0.38);
+}
+
+//Browser Scrollbar
+::-webkit-scrollbar {
+  width: 0.6em;
+  height: 0.6em;
+  opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gray-600;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $gray-200;
+  border-radius: 5px;
+}
+
+//Input Placeholder
+.MuiInputBase-input::-moz-placeholder,
+.MuiInputBase-input:-ms-input-placeholder,
+.MuiInputBase-input::-webkit-input-placeholder {
+  opacity: 1 !important;
+  color: $color-input-placeholder;
+}
+
+label[data-shrink="false"]
+  + .MuiInputBase-formControl
+  .MuiInputBase-input::-webkit-input-placeholder {
+  opacity: 0.5 !important;
+}
+
+.app-content {
+  display: flex;
+  //padding-top: $topbar-height;
+  height: calc(100% - $topbar-height);
+}
+
+.page-content {
+  padding: 0 16px;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+html,
+body,
+body > div {
+  height: 100%;
+}
+
+.form-wrapper {
+  margin-top: 50px;
+
+  .MuiFormControl-root {
+    width: 100%;
+    padding-bottom: 34px;
+  }
+}
+
+//Wizard
+.wizard {
+  background-color: #1e2a36;
+  height: 100%;
+
+  .MuiAccordion-root {
+    border-radius: 0 !important;
+  }
+
+  .MuiAccordionDetails-root {
+    background-color: rgba(46, 63, 82, 0.5);
+  }
+}

@@ -1,0 +1,262 @@
+//MUI Overrides
+
+//MUI Paper
+.MuiPaper-root {
+  background-color: $color-portlet;
+  // margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 0;
+
+  &.MuiAccordion-root {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.MuiAccordion-root:before {
+  height: 0;
+}
+
+//MUI Button
+.MuiButton-root {
+  padding: 10px 26px;
+  min-width: 112px;
+  line-height: 1.5;
+}
+
+.MuiButton-containedSizeLarge {
+  padding: 19px 22px;
+}
+
+//MUI Input v4
+.MuiInputBase-input {
+  font-size: 0.9rem;
+  &::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+.MuiInputBase-multiline.MuiOutlinedInput-multiline {
+  padding: 0;
+}
+
+.MuiOutlinedInput-input {
+  padding: 10px 14px;
+}
+
+.MuiInputLabel-root {
+  //color: rgba(229, 229, 229, 0.38) !important;
+  transform: translate(2px, -20px) scale(0.75) !important;
+  font-size: large !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  top: 0px !important;
+  background: rgba(209, 210, 211, 0.07);
+  border: 1px solid rgba(209, 210, 211, 0.22);
+}
+
+.MuiOutlinedInput-notchedOutline,
+.MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(209, 210, 211, 0.22);
+}
+
+.MuiTextField-root.MuiFormControl-marginNormal {
+  margin-top: 40px !important;
+}
+
+.MuiInputAdornment-root {
+  color: #a3a3a6;
+}
+
+
+//MUI Input v5
+.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root{
+  padding: 0.2rem !important;
+}
+
+.MuiAutocomplete-paper{
+  background-color: $color-portlet !important;
+  border: 1px solid rgba(209, 210, 211, 0.22) !important;
+}
+.MuiAutocomplete-option{
+  background-color: #2e323d !important;
+  color: white;
+}
+.MuiAutocomplete-option:hover{
+  background-color: #7c828f !important;
+  color: white;
+}
+
+
+
+
+//MUI Table
+.MuiTableCell-root {
+  padding: 8px 12px;
+  border-bottom: 0;
+  border-right: 2px solid $color-table-border;
+  &:last-child {
+    border-right-width: 0;
+  }
+}
+
+.MuiTableCell-stickyHeader {
+  background-color: $color-table-header;
+  box-shadow: 2px 0px 0px #5f6873;
+}
+
+.MuiCustomTableContainer.MuiTableContainer-root{
+    width: 100%;
+    overflow-x: auto !important;
+    height: calc(100vh - 20rem) !important;
+
+}
+
+
+.MuiTableRow-root {
+  background-color: $color-table-body;
+
+  &.MuiTableRow-hover:hover {
+    background-color: lighten($color-table-body, 2%);
+  }
+}
+
+.MuiTabs-flexContainer {
+  background-color: $color-night;
+  .MuiTab-root {
+    background-color: $color-night;
+    border: 1px solid $color-tab-border;
+    opacity: 1;
+
+    &.Mui-selected {
+      border-color: transparent;
+      background-color: $color-active-tab;
+    }
+  }
+}
+.MuiTabs-indicator {
+  background-color: $color-active-tab;
+}
+
+// DataTable
+
+.MuiDataGrid-root .MuiDataGrid-columnHeader {
+  background-color: $color-table-header;
+  border-right: 2px solid $color-table-border;
+  &:last-child {
+    border-right-width: 0;
+  }
+}
+
+.MuiDataGrid-root,
+.MuiDataGrid-root .MuiDataGrid-columnsContainer {
+  border-width: 0;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell {
+  border-bottom-width: 0;
+  background-color: $color-table-body;
+  border-right: 2px solid $color-table-border;
+  &:last-child {
+    border-right-width: 0;
+  }
+}
+
+.MuiSvgIcon-root.MuiDataGrid-iconSeparator {
+  display: none;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: none;
+}
+
+// Checkbox
+
+.MuiCheckbox-root.Mui-checked {
+  color: $color-bombay;
+}
+
+// Date Picker
+
+.mui-date-picker {
+  .MuiOutlinedInput-adornedStart {
+    padding-left: 0;
+    position: relative;
+  }
+
+  .MuiInputAdornment-root {
+    position: absolute;
+    right: 0;
+
+    .MuiIconButton-root {
+      padding: 6px;
+      position: relative;
+      left: 2px;
+      svg {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.MuiPaper-root.MuiPopover-paper {
+  padding: 0;
+  .MuiPickerDTToolbar-toolbar.MuiToolbar-gutters {
+    padding: 1rem;
+    .MuiPickersToolbarButton-toolbarBtn {
+      min-width: fit-content;
+      padding: 0.3rem .5rem;
+      h4 {
+        font-size: 1.2rem;
+      }
+      h3 {
+        font-size: 2rem;
+      }
+      h6 {
+        line-height: 1.2;
+      }
+      .MuiPickerDTToolbar-separator {
+        font-size: 2rem;
+      }
+    }
+  }
+  .MuiPickersBasePicker-container {
+    .MuiPickersToolbar-toolbar {
+      background-color: $color-comet;
+    }
+    .MuiPickersBasePicker-pickerView {
+      max-width: auto;
+      .MuiPickersCalendarHeader-switchHeader {
+        padding-inline: 1rem;
+        .MuiPickersCalendarHeader-iconButton {
+          background-color: $color-comet;
+          padding: .4rem;
+        }
+      }
+      .MuiPickersDay-day{
+        p {
+          line-height: 1;
+        }
+      }
+    }
+  }
+
+  .MuiTabs-root.MuiPickerDTTabs-tabs {
+    .MuiTab-root {
+      background-color: $color-sidebar;
+      border: none;
+      &.Mui-selected {
+        background-color: $color-comet;
+      }
+    }
+    .MuiTabs-indicator {
+      height: 0;
+    }
+  }
+}
+
+input.Mui-disabled, .MuiSelect-root.Mui-disabled {
+  cursor: not-allowed;
+}

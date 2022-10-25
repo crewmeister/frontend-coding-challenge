@@ -1,0 +1,67 @@
+// Sidebar
+.sidebar {
+    width: $sidebar-width;
+    min-height: 100%;
+    padding-bottom: 8px;
+    background-color: $color-sidebar;
+  
+    .nav-item {
+  
+        .nav-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0.5rem;
+            border-left: 4px solid transparent;
+  
+            span {
+                display: block;
+                font-size: 12px;
+            }
+            i {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+        }
+  
+        &.active {
+            .nav-link {
+                border-left-color: $primaryColor;
+            }
+        }
+    }
+}
+  
+  // Sidebar Dark
+  .sidebar-dark {
+  
+    .nav-item {
+        .nav-link {
+            color: fade-out($white, 0.2);
+  
+            i {
+                color: fade-out($white, 0.7);
+            }
+  
+            &:active,
+            &:focus,
+            &:hover {
+                color: $white;
+  
+                i {
+                    color: $white;
+                }
+            }
+        }
+  
+        &.active {
+            .nav-link {
+                color: $white;
+  
+                i {
+                    color: $white;
+                }
+            }
+        }
+    }
+  }
