@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Table } from "antd";
 
-function App() {
+import { useAbsences } from "./hooks/useAbsences";
+
+import "./App.css";
+
+const columns = [
+  {
+    title: "Member name",
+    dataIndex: "userName",
+  },
+  {
+    title: "Type of absence",
+    dataIndex: "type",
+  },
+  {
+    title: "Start date",
+    dataIndex: "startDate",
+    width: "10%",
+  },
+  {
+    title: "End date",
+    dataIndex: "endDate",
+    width: "10%",
+  },
+  {
+    title: "Member note",
+    dataIndex: "memberNote",
+    width: "40%",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+  },
+  { title: "Admitter note", dataIndex: "admitterNote" },
+];
+
+const onChange = (pagination, filters, sorter, extra) => {
+  //console.log("params", pagination, filters, sorter, extra);
+};
+
+const App = () => {
+  const { data } = useAbsences();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Table columns={columns} dataSource={data} onChange={onChange} />
     </div>
   );
-}
+};
 
 export default App;
