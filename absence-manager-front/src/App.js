@@ -2,8 +2,13 @@ import React from "react";
 import { Table } from "antd";
 
 import { useAbsences } from "./hooks/useAbsences";
+import { getColumnDatePickerSearchProps } from "./utils";
 
 import "./App.css";
+
+const onChange = (pagination, filters, sorter, extra) => {
+  //console.log("params", pagination, filters, sorter, extra);
+};
 
 const columns = [
   {
@@ -13,16 +18,29 @@ const columns = [
   {
     title: "Type of absence",
     dataIndex: "type",
+    filters: [
+      {
+        text: "Vacation",
+        value: "vacation",
+      },
+      {
+        text: "Sickness",
+        value: "sickness",
+      },
+    ],
+    onFilter: (value, record) => record.type.indexOf(value) === 0,
   },
   {
     title: "Start date",
     dataIndex: "startDate",
     width: "10%",
+    ...getColumnDatePickerSearchProps("startDate"),
   },
   {
     title: "End date",
     dataIndex: "endDate",
     width: "10%",
+    ...getColumnDatePickerSearchProps("endDate"),
   },
   {
     title: "Member note",
@@ -36,16 +54,17 @@ const columns = [
   { title: "Admitter note", dataIndex: "admitterNote" },
 ];
 
-const onChange = (pagination, filters, sorter, extra) => {
-  //console.log("params", pagination, filters, sorter, extra);
-};
-
 const App = () => {
-  const { data } = useAbsences();
+  const { data, isLoading } = useAbsences();
 
   return (
     <div className="app">
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={onChange}
+        loading={isLoading}
+      />
     </div>
   );
 };
