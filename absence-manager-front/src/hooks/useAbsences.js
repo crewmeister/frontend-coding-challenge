@@ -10,16 +10,24 @@ const getAbsences = () =>
     .get(absencesUrl)
     .then((res) => res.data)
     .catch((err) => {
-      return err.message;
+      throw new Error(err.message);
     });
 
 export function useAbsences() {
-  const { data: members } = useMembers();
+  const { data: members, isError, error, isLoading } = useMembers();
 
   return useQuery(["absences"], () => getAbsences(), {
     select: (data) => {
+      if (isLoading) {
+        return;
+      }
+
+      if (isError) {
+        throw new Error(error);
+      }
+
       return data?.payload?.map((absence) => {
-        const user = members.payload.find(
+        const user = members?.payload.find(
           (member) => member.userId === absence.userId
         );
 
@@ -27,7 +35,7 @@ export function useAbsences() {
         if (absence.rejectedAt) status = "Rejected";
         if (absence.confirmedAt) status = "Confirmed";
 
-        return { ...absence, userName: user.name, key: absence.id, status };
+        return { ...absence, userName: user?.name, key: absence.id, status };
       });
     },
   });

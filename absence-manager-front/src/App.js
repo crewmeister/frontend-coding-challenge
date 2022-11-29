@@ -1,14 +1,10 @@
-import React from "react";
-import { Table, Alert } from "antd";
+import React, { useCallback, useEffect } from "react";
+import { Table, message } from "antd";
 
 import { useAbsences } from "./hooks/useAbsences";
 import { getColumnDatePickerSearchProps } from "./utils";
 
 import "./App.css";
-
-const onChange = (pagination, filters, sorter, extra) => {
-  //console.log("params", pagination, filters, sorter, extra);
-};
 
 const columns = [
   {
@@ -55,21 +51,29 @@ const columns = [
 ];
 
 const App = () => {
-  const { data = [], isLoading, error, isError } = useAbsences();
+  const [messageApi, contextHolder] = message.useMessage();
+  const { data = [], isLoading, isError, error } = useAbsences();
 
-  if (isError) {
-    return <Alert message={error} type="error" />;
-  }
+  const handleToast = useCallback(
+    (type, content) => {
+      messageApi.open({ type, content });
+    },
+    [messageApi]
+  );
+
+  useEffect(() => {
+    if (isError) {
+      handleToast("error", error.toString());
+    }
+  }, [isError, error, handleToast]);
 
   return (
-    <div className="app">
-      <Table
-        columns={columns}
-        dataSource={data}
-        onChange={onChange}
-        loading={isLoading}
-      />
-    </div>
+    <>
+      {contextHolder}
+      <div className="app">
+        <Table columns={columns} dataSource={data} loading={isLoading} />
+      </div>
+    </>
   );
 };
 

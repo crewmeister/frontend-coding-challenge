@@ -7,7 +7,9 @@ const getMembers = () =>
   axios
     .get(membersUrl)
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => {
+      throw new Error(err.message);
+    });
 
 export function useMembers() {
   return useQuery(["members"], () => getMembers());
