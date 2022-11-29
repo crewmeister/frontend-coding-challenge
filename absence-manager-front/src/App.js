@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Alert } from "antd";
 
 import { useAbsences } from "./hooks/useAbsences";
 import { getColumnDatePickerSearchProps } from "./utils";
@@ -55,7 +55,11 @@ const columns = [
 ];
 
 const App = () => {
-  const { data, isLoading } = useAbsences();
+  const { data = [], isLoading, error, isError } = useAbsences();
+
+  if (isError) {
+    return <Alert message={error} type="error" />;
+  }
 
   return (
     <div className="app">
