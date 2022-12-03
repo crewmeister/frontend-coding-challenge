@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Layout, Menu, Avatar, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
 
 import { fetchAbsences } from "./state/actions/absences";
 import Header from "./components/Header";
@@ -18,7 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAbsences());
-  }, []);
+  }, [dispatch]);
 
   const absences = useSelector(state => state.absences.data);
 
