@@ -9,6 +9,13 @@ function Absences({ absences, isLoading }) {
       dataSource={absences}
       columns={getTableColumns()}
       loading={isLoading}
+      pagination={{
+        position: ["bottomCenter"],
+        defaultPageSize: 10,
+      }}
+      rowKey="id"
+      sticky={{offsetHeader: "64px"}}
+      title={() => `Total Absences: ${absences.length}`}
     />
   );
 }

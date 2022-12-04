@@ -1,4 +1,6 @@
 import moment from "moment";
+import { Tag } from 'antd';
+import { ABSENCE_STATUS } from "../constants/absences";
 
 /**
  * Calculate the no of days between 2 dates
@@ -14,6 +16,23 @@ export const calculateNoOfDays = (startDate, endDate) => {
     : "End date should be same as or after Start date";
 };
 
+const getStatus = (confirmedAt, rejectedAt) => {
+  let status = ABSENCE_STATUS.REQUESTED;
+  let color = 'blue';
+  if (confirmedAt) {
+    status = ABSENCE_STATUS.CONFIRMED;
+    color = 'green'; 
+  } else if (rejectedAt) {
+    status = ABSENCE_STATUS.REJECTED;
+    color = 'red';
+  }
+  return (
+    <Tag color={color}>
+      {status.toUpperCase()}
+    </Tag>
+  );
+};
+
 /**
  * Generate table column configuration
  * @returns
@@ -22,9 +41,11 @@ export const getTableColumns = () => [
   {
     title: "Member Name",
     dataIndex: "memberName",
+    width: "150px",
   },
   {
     title: "Type of Absence",
+    width: "150px",
     dataIndex: "type",
   },
   {
@@ -41,20 +62,27 @@ export const getTableColumns = () => [
         width: "120px",
       },
       {
+        width: "120px",
         title: "No. of Days",
         render: (text, record) =>
           calculateNoOfDays(record.startDate, record.endDate),
-        key: "days",
       },
     ],
   },
   {
     title: "Member Note",
     dataIndex: "memberNote",
+    render: text => text || '-'
   },
   {
+    width: "120px",
     title: "Status",
-    dataIndex: "status",
+    render: (text, record) =>
+      getStatus(record.confirmedAt, record.rejectedAt),
   },
-  { title: "Admitter Note", dataIndex: "admitterNote" },
+  { 
+    title: "Admitter Note",
+    dataIndex: "admitterNote",
+    render: text => text || '-'
+  },
 ];
