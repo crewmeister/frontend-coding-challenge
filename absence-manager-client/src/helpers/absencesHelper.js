@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Tag } from 'antd';
+import { Tag } from "antd";
 import { ABSENCE_STATUS } from "../constants/absences";
 
 /**
@@ -16,21 +16,23 @@ export const calculateNoOfDays = (startDate, endDate) => {
     : "End date should be same as or after Start date";
 };
 
-const getStatus = (confirmedAt, rejectedAt) => {
+/**
+ * Determine status and generate a colored tag
+ * @param {*} confirmedAt
+ * @param {*} rejectedAt
+ * @returns
+ */
+const generateStatus = (confirmedAt, rejectedAt) => {
   let status = ABSENCE_STATUS.REQUESTED;
-  let color = 'blue';
+  let color = "blue";
   if (confirmedAt) {
     status = ABSENCE_STATUS.CONFIRMED;
-    color = 'green'; 
+    color = "green";
   } else if (rejectedAt) {
     status = ABSENCE_STATUS.REJECTED;
-    color = 'red';
+    color = "red";
   }
-  return (
-    <Tag color={color}>
-      {status.toUpperCase()}
-    </Tag>
-  );
+  return <Tag color={color}>{status.toUpperCase()}</Tag>;
 };
 
 /**
@@ -45,8 +47,19 @@ export const getTableColumns = () => [
   },
   {
     title: "Type of Absence",
-    width: "150px",
     dataIndex: "type",
+    width: "150px",
+    filters: [
+      {
+        text: "Vacation",
+        value: "vacation",
+      },
+      {
+        text: "Sickness",
+        value: "sickness",
+      },
+    ],
+    onFilter: (value, record) => value.includes(record.type),
   },
   {
     title: "Period",
@@ -62,27 +75,27 @@ export const getTableColumns = () => [
         width: "120px",
       },
       {
-        width: "120px",
         title: "No. of Days",
         render: (text, record) =>
           calculateNoOfDays(record.startDate, record.endDate),
+        width: "120px",
       },
     ],
   },
   {
     title: "Member Note",
     dataIndex: "memberNote",
-    render: text => text || '-'
+    render: (text) => text || "-",
   },
   {
-    width: "120px",
     title: "Status",
     render: (text, record) =>
-      getStatus(record.confirmedAt, record.rejectedAt),
+      generateStatus(record.confirmedAt, record.rejectedAt),
+    width: "120px",
   },
-  { 
+  {
     title: "Admitter Note",
     dataIndex: "admitterNote",
-    render: text => text || '-'
+    render: (text) => text || "-",
   },
 ];

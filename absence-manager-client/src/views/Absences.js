@@ -1,22 +1,44 @@
-import { Table } from "antd";
+import { useEffect } from "react";
+import { Table, message } from "antd";
 
 import { getTableColumns } from "../helpers/absencesHelper";
 
-function Absences({ absences, isLoading }) {
+function Absences({ absences, isLoading, isError, error }) {
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const handleError = () => {
+    messageApi.open({
+      type: "error",
+      content: error,
+      style: { marginTop: '60px' },
+      duration: 5
+    });
+  };
+
+  useEffect(() => {
+    isError && handleError();
+  }, [isError]);
+
   return (
-    <Table
-      bordered
-      dataSource={absences}
-      columns={getTableColumns()}
-      loading={isLoading}
-      pagination={{
-        position: ["bottomCenter"],
-        defaultPageSize: 10,
-      }}
-      rowKey="id"
-      sticky={{offsetHeader: "64px"}}
-      title={() => `Total Absences: ${absences.length}`}
-    />
+    <>
+      {contextHolder}
+      <Table
+        bordered
+        dataSource={absences}
+        columns={getTableColumns()}
+        loading={isLoading}
+        pagination={{
+          position: ["bottomCenter"],
+          defaultPageSize: 10,
+        }}
+        rowKey="id"
+        sticky={{ offsetHeader: "64px" }}
+        title={() => `Total Absences: ${absences.length}`}
+        // locale={{
+        //   emptyText: 'No Absence Data',
+        // }}
+      />
+    </>
   );
 }
 
