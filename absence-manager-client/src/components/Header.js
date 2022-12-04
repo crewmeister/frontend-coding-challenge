@@ -10,6 +10,7 @@ export default styled(Header)`
   background-color: rgb(255, 148, 25) !important;
   position: sticky;
   top: 0;
+  z-index: 100;
 
   & h3.ant-typography {
     margin-bottom: revert;

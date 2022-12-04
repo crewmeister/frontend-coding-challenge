@@ -19,7 +19,7 @@ function App() {
     dispatch(fetchAbsences());
   }, [dispatch]);
 
-  const absences = useSelector(state => state.absences.data);
+  const { data, isFetching } = useSelector(state => state.absences);
 
   return (
     <Layout className="layout">
@@ -35,10 +35,10 @@ function App() {
       </Header>
       <Content
         style={{
-          padding: '0 50px',
+          padding: '1rem 50px 0',
         }}
       >
-        <Absences absences={absences} />
+        <Absences absences={data} isLoading={isFetching} />
       </Content>
       <Footer
         style={{

@@ -1,11 +1,16 @@
-function Absences({ absences }) {
+import { Table } from "antd";
+
+import { getTableColumns } from "../helpers/absencesHelper";
+
+function Absences({ absences, isLoading }) {
   return (
-    <ol>
-      {
-        absences.map(absence => (<li>{ absence.id } - { absence.userId } - { absence.startDate } - { absence.endDate } - { absence.type }</li>))
-      }
-    </ol>
+    <Table
+      bordered
+      dataSource={absences}
+      columns={getTableColumns()}
+      loading={isLoading}
+    />
   );
-};
+}
 
 export default Absences;

@@ -14,7 +14,13 @@ export const fetchAbsences = () => async (dispatch) => {
   dispatch(fetchAbsencesRequest());
   try {
     const absences = await axios.get("absences.json");
-    dispatch(fetchAbsencesSuccess(absences?.data?.payload || []));
+    const members = await axios.get("members.json");
+
+    const populatedAbsences = absences?.data?.payload.map(absence => {
+      const member = members?.data?.payload.find(member => member.userId === absence.userId);
+      return { ...absence, memberName: member?.name };
+    });
+    dispatch(fetchAbsencesSuccess(populatedAbsences || []));
   } catch (err) {
     console.log("fetchAbsences error: ", err);
     dispatch(fetchAbsencesFailure(err.message));
