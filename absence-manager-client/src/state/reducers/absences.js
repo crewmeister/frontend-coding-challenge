@@ -1,6 +1,6 @@
 import { ACTION_TYPES } from '../actions/absences';
 
-const initialState = {
+export const initialState = {
   isFetching: false,
   isError: false,
   error: '',

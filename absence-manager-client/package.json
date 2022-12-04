@@ -44,6 +44,8 @@
   },
   "devDependencies": {
     "babel-jest": "^29.3.1",
+    "expect": "^29.3.1",
+    "moxios": "^0.4.0",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4"
   },
