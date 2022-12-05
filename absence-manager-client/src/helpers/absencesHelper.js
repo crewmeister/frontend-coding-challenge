@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Row, Tag } from "antd";
+import { Button, Row, Tag } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { createEvent } from "ics";
 import { ABSENCE_STATUS } from "../constants/absences";
@@ -173,11 +173,11 @@ export const getTableColumns = (filteredInfo, filterByDate) => [
     key: "action",
     width: "100px",
     render: (text, record) => (
-      <a onClick={() => downloadICal(record)}>
+      <Button type="link" onClick={() => downloadICal(record)}>
         <Row justify="center">
           <DownloadOutlined />
         </Row>
-      </a>
+      </Button>
     ),
   },
 ];
