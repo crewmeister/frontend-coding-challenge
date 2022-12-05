@@ -95,4 +95,8 @@ Happy coding!
 
 ## Setup, Running, Tesing and Deployment Guides
 
+### Client Application
 Follow `absence-manager-client/README.md`
+
+### API
+Follow `api/README.md`
