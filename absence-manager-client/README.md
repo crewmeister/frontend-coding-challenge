@@ -41,5 +41,3 @@ Deploy to Github pages. Will be accessible at [Absence Manager](https://https://
 ```
 npm run deploy
 ```
-
-
