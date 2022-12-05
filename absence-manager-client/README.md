@@ -37,6 +37,9 @@ Your app is ready to be deployed!
 
 ### Deploy
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Deploy to Github pages. Will be accessible at [Absence Manager](https://https://shanikaediriweera.github.io/crewmeister-frontend-coding-challenge)
+```
+npm run deploy
+```
 
 

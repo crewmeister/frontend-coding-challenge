@@ -1,6 +1,7 @@
 {
   "name": "absence-manager-client",
   "version": "0.1.0",
+  "homepage": "https://https://shanikaediriweera.github.io/crewmeister-frontend-coding-challenge",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +50,7 @@
   "devDependencies": {
     "babel-jest": "^29.3.1",
     "expect": "^29.3.1",
+    "gh-pages": "^4.0.0",
     "moxios": "^0.4.0",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4"
