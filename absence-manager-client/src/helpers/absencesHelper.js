@@ -36,19 +36,36 @@ const generateStatus = (confirmedAt, rejectedAt) => {
 };
 
 /**
- * Generate table column configuration
- * @returns
+ * Check the given date is within the start and end dates
+ * @param {*} date 
+ * @param {*} startDate 
+ * @param {*} endDate 
+ * @returns 
  */
-export const getTableColumns = () => [
+const checkDateWithinRange = (date, startDate, endDate) => {
+  const isWithinRange = moment(date).isBetween(startDate, endDate, undefined, '[]');
+  return !date || isWithinRange;
+};
+
+/**
+ * Generate table column configuration
+ * 
+ * @param {*} filteredInfo filer values
+ * @param {*} filterByDate 
+ * @returns 
+ */
+export const getTableColumns = (filteredInfo, filterByDate) => [
   {
     title: "Member Name",
     dataIndex: "memberName",
     width: "150px",
+    key: "name"
   },
   {
     title: "Type of Absence",
     dataIndex: "type",
     width: "150px",
+    filteredValue: filteredInfo.type || null,
     filters: [
       {
         text: "Vacation",
@@ -60,25 +77,32 @@ export const getTableColumns = () => [
       },
     ],
     onFilter: (value, record) => value.includes(record.type),
+    key: "type"
   },
   {
     title: "Period",
+    key: "period",
     children: [
       {
         title: "Start Date",
         dataIndex: "startDate",
         width: "120px",
+        filteredValue: [filterByDate],
+        onFilter: (value, record) => checkDateWithinRange(value, record.startDate, record.endDate),
+        key: "startDate"
       },
       {
         title: "End Date",
         dataIndex: "endDate",
         width: "120px",
+        key: "startDate"
       },
       {
         title: "No. of Days",
         render: (text, record) =>
           calculateNoOfDays(record.startDate, record.endDate),
         width: "120px",
+        key: "days"
       },
     ],
   },
@@ -86,16 +110,19 @@ export const getTableColumns = () => [
     title: "Member Note",
     dataIndex: "memberNote",
     render: (text) => text || "-",
+    key: "memberNote"
   },
   {
     title: "Status",
     render: (text, record) =>
       generateStatus(record.confirmedAt, record.rejectedAt),
     width: "120px",
+    key: "status"
   },
   {
     title: "Admitter Note",
     dataIndex: "admitterNote",
     render: (text) => text || "-",
+    key: "admitterNote"
   },
 ];

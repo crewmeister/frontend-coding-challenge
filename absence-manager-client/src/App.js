@@ -4,7 +4,7 @@ import { Layout, Menu, Avatar, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 import { fetchAbsences } from "./state/actions/absences";
-import Header from "./components/Header";
+import Header from "./components/Header.style";
 import Absences from "./views/Absences";
 import "./App.css";
 
