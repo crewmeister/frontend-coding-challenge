@@ -4,7 +4,7 @@ import axios from "axios";
 import moxios from "moxios";
 import expect from 'expect';
 import { ACTION_TYPES, fetchAbsences } from "../../state/actions/absences";
-import { absenceData, populatedAbsences, failResp } from "../../__data__/absences.data";
+import { populatedAbsencesRes, populatedAbsences, failResp } from "../../__data__/absences.data";
 import { memberData } from "../../__data__/members.data";
 import { initialState as state } from "../../state/reducers/absences";
 
@@ -25,14 +25,9 @@ describe("test absences actions", () => {
 
   describe("when fetchAbsences() is called", () => {
     it("should fetch absences successfully and dispatch FETCH_ABSENCES_SUCCESS action", () => {
-      moxios.stubRequest(/.*absences.json/, {
+      moxios.stubRequest(/.*absences/, {
         status: 200,
-        response: absenceData,
-      });
-  
-      moxios.stubRequest(/.*members.json/, {
-        status: 200,
-        response: memberData,
+        response: populatedAbsencesRes,
       });
   
       const expectedActions = [
