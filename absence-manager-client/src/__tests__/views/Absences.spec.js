@@ -58,4 +58,51 @@ describe('renders Absences View', () => {
     const errorText = await screen.findByText(/Test Error/i);
     expect(errorText).toBeInTheDocument();
   });
+
+  it('when date picker is clicked, Date Picker should be opened, when select a date date should be populated', async () => {
+    render(<Absences           
+      absences={populatedAbsences}
+      isLoading={false}
+      isError={false}
+      error={''}
+    />);
+    const datePicker = await screen.findByPlaceholderText(/Select date/i);
+    expect(datePicker).toBeInTheDocument();
+    user.click(datePicker);
+
+    const todayText = await screen.findByText(/Today/i);
+    expect(todayText).toBeInTheDocument();
+
+    // screen.debug();
+
+    const marchButton = screen.getByRole('button', { name: 'Mar'});
+    user.click(marchButton);
+
+
+    const febButton = await screen.findByTitle('2023-01');
+    user.click(febButton);
+    // screen.debug();
+
+
+    const thirdFeb = screen.getByTitle('2023-01-13');
+    user.click(thirdFeb);
+
+    // screen.debug();
+
+    expect(screen.getByRole('cell', {name: 'Mike'})).toBeInTheDocument();
+    expect(screen.queryByRole('cell', {name: 'Daniel'})).not.toBeInTheDocument(); // queryByRole => for non-existing scenario
+
+    expect(screen.getByRole('textbox', {name:'2023-01-13'})).toHaveValue('2023-01-13');
+    
+    // input textbox with '2023-02-03' and assert 'Daniel'
+
+    await user.clear(screen.getByRole('textbox', {name:'2023-01-13'}));
+    await user.type(screen.getByRole('textbox', {name:''}), '2023-02-03');
+    // screen.debug();
+    expect(screen.getByRole('textbox', {name:'2023-02-03'})).toHaveValue('2023-02-03');
+
+    //TODO: fix test data
+    // expect(screen.getByRole('cell', {name: 'Daniel'})).toBeInTheDocument();
+
+  });
 });
