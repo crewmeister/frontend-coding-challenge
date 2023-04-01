@@ -1,0 +1,31 @@
+{
+  "name": "absence-manager-api",
+  "version": "1.0.0",
+  "description": "## Setup and Run Project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "rimraf": "./node_modules/rimraf/bin.js",
+    "build": "rimraf dist/ && babel index.js -d dist",
+    "test": "jest --coverage",
+    "start": "npm run build && nodemon dist/server.js"
+  },
+  "author": "Shanika Ediriweera",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^3.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.2",
+    "morgan": "^1.10.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.3.1"
+  }
+}
