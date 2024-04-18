@@ -2,7 +2,7 @@
   <img src="https://crewmeister.com/images/logo_crewmeister_without_text.svg" />
 </p>
 
-# 🚀 Crewmeister coding challenge - Frontend (React)
+# 🚀 Crewmeister coding challenge - Frontend (Flutter)
 
 Hello and thanks in participating in the crewmeister coding challenge. This coding exercise will help us get a better feeling about your coding process.
 
@@ -35,26 +35,20 @@ We decided to implement this feature for our clients and we are calling it the A
 
 ## Your Mission
 
-Create the React application that satisfies all must-have requirements above, plus any nice-to-have requirements you wish to include.
+Create the Flutter application that satisfies all must-have requirements above, plus any nice-to-have requirements you wish to include.
 
-We provided a couple of JSON files with the mock data necessary to implement the screens, you can use the files straight into the frontend or create a small API (bonus), it's your choice.
+We provided a couple of JSON files with the mock data necessary to implement the screens, you can use the files straight into the app using the mock methods provided in this repository or create a small separate API (bonus), it's your choice.
 
-You can use any boilerplate/approach you prefer (nextjs, create react app, ...), but try to keep it simple. We encourage you to use your favorite tools and packages to build a solid React application.
-
-You can assume that you do not have to support legacy browsers. Feel free to use modern features such as **fetch** or **flexbox**.
-
-(bonus) Host the website on the service of your choice (Heroku, AWS, GCloud, ...).
+We encourage you to use your favorite tools and packages to build a solid Flutter application.
 
 Optional: build the project and deploy (ie make it available as a static project) on Github Pages, otherwise please provide detailed instructions on how to start the project locally.
 
 ## Tech Requirements
 
-- React
-- Tests: Jest + react-testing-library / enzyme
+- Flutter
+- Tests: flutter_test library
 - Code Linter
-- Redux is a plus.
-- Typescript is a plus.
-- CSSinJS is a plus: styled-components, styled-system, ...
+- Using a state management approach (BLoC, Redux etc) is a plus.
 
 ## Instructions
 
@@ -68,10 +62,10 @@ Optional: build the project and deploy (ie make it available as a static project
 
 We'll review your submission as soon as possible. Key-points we're going to review:
 
-- Naming (files, functions, components, ...).
+- Naming (files, functions, widgets, ...).
 - Tests.
 - Code structure, readability, performance and consistency.
-- function lengths.
+- function and widget lengths.
 - Commits + commit messages.
 - Clean code.
 - Good documentation and README instructions.
