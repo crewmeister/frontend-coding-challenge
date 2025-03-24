@@ -79,7 +79,9 @@ To submit the project for evaluation please follow the steps below:
 - Create a **public** repo on your personal Github.
 - Add the new repo as a _remote_ on your local repo.
 - Push your code to your new remote repo.
-- Send us the link! The e-mail is: challenge@crewmeister.com
+- Provide the link to your GitHub repository in the Greenhouse submission form.
+- Submit your completed project via the Greenhouse link in the email received from the Recruitment Manager.
+
 
 ## That's it!
 
